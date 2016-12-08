@@ -140,7 +140,7 @@ curl <span class="s2">"api_endpoint_here"</span>
 <p>Make sure to replace <code class="prettyprint">meowmeowmeow</code> with your API key.</p>
 </blockquote>
 
-<p>API keys are used to authenticate users of our API. You can <a href="http://support.talkbusinessanywhere.com/">contact us</a> to request a new API key.</p>
+<p>API keys are used to authenticate users of our API. You can <a href="mailto:matt@talkbusinessanywhere.com">contact us</a> to request a new API key.</p>
 
 <p>The API key is expected to be included in all API requests to the server in a header that looks like the following:</p>
 
@@ -193,35 +193,35 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 </thead><tbody>
 <tr>
 <td>quality</td>
-<td>Accepted value range (1-3, as integer). Documentation forthcoming</td>
+<td>Represents how important industry knowledge is to the match. Accepted values are (1, 2, 3) and must be passed as an integer. 1 indicates &ldquo;low priority&rdquo;, 2 indicates &ldquo;medium priority&rdquo; and 3 indicates &ldquo;high priority&rdquo;.</td>
 </tr>
 <tr>
 <td>price</td>
-<td>Accepted value range (1-3, as integer). Documentation forthcoming</td>
+<td>Represents an approximation of the client&rsquo;s budget. Accepted values are (1, 2, 3) and must be passed as an integer. 1 indicates &ldquo;value matches&rdquo; are desired by the client, 2 indicates &ldquo;standard matches&rdquo; are desired by the client, 3 indicates the client wants to see &ldquo;premium matches&rdquo;.</td>
 </tr>
 <tr>
 <td>speed</td>
-<td>Accepted value range (-1, 0, 1 as integer). Documentation forthcoming</td>
+<td>Accepted values are (-1, 0, 1) and must be passed as an integer. This is a proxy for urgency (-1 indicates &ldquo;not urgent&rdquo;, 0 is &ldquo;normal&rdquo;, and 1 is &ldquo;very urgent&rdquo;). This is being deprecated in favor of a proper date/time field which will be documented shortly.</td>
 </tr>
 <tr>
 <td>location</td>
-<td>The ID of the location where the job will take place, a list of accepted locations and their ids can be found <a href="https://www.talkbusinessanywhere.com/api/v1/locations">here</a>. For on the phone interpretations and translations please use id <strong>1374</strong>.</td>
+<td>The ID of the location where the job will take place, a list of accepted locations and their ids can be found <a href="https://www.talkbusinessanywhere.com/api/v1/locations">here</a> (JSON). For on the phone interpretations and translations, please use id <strong>1374</strong>.</td>
 </tr>
 <tr>
 <td>service_type</td>
-<td><em>&ldquo;interpretation&rdquo;</em> or <em>&ldquo;translation&rdquo;</em></td>
+<td><em>&ldquo;interpretation&rdquo;</em> (e.g., phone calls or live meetings) or <em>&ldquo;translation&rdquo;</em> (e.g., documents)</td>
 </tr>
 <tr>
 <td>target_language</td>
-<td>The ID of the language the target audience speak, a list of accepted languages and their ids can be found <a href="https://www.talkbusinessanywhere.com/api/v1/languages">here</a></td>
+<td>The ID of the language the target audience speak, a list of accepted languages and their ids can be found <a href="https://www.talkbusinessanywhere.com/api/v1/languages">here</a> (JSON)</td>
 </tr>
 <tr>
 <td>source_language</td>
-<td>The ID of the language the speaker uses, a list of accepted languages and their ids can be found <a href="https://www.talkbusinessanywhere.com/api/v1/languages">here</a></td>
+<td>The ID of the language the speaker uses, a list of accepted languages and their ids can be found <a href="https://www.talkbusinessanywhere.com/api/v1/languages">here</a> (JSON)</td>
 </tr>
 <tr>
 <td>industry</td>
-<td>The related industry of the job, in string and lower case. A list of accepted industries can be found <a href="javascripts/industries.json">here</a></td>
+<td>The related industry of the job, in string and lower case. A list of accepted industries can be found <a href="javascripts/industries.json">here</a> (JSON)</td>
 </tr>
 </tbody></table>
 
@@ -239,7 +239,7 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 </tr>
 <tr>
 <td>price</td>
-<td>Estimated price in USD.</td>
+<td>Estimated price in USD (per hour if <em>interpretation</em>, per 100 words if <em>translation</em>)</td>
 </tr>
 <tr>
 <td>status</td>
@@ -265,7 +265,9 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
   </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OK"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint verifies whether the parameters are valid for creating a new job.</p>
+<aside class="notice">
+This endpoint verifies whether the parameters are valid for creating a new job. The current naming of this endpoint will change: *submit_job* will become *validate_job*.
+</aside>
 
 <h3 id="http-request">HTTP Request</h3>
 
@@ -281,19 +283,19 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 </thead><tbody>
 <tr>
 <td>quality</td>
-<td>Accepted value range (1-3, as integer). Documentation forthcoming</td>
+<td>Represents how important industry knowledge is to the match. Accepted values are (1, 2, 3) and must be passed as an integer. 1 indicates &ldquo;low priority&rdquo;, 2 indicates &ldquo;medium priority&rdquo; and 3 indicates &ldquo;high priority&rdquo;.</td>
 </tr>
 <tr>
 <td>price</td>
-<td>Accepted value range (1-3, as integer). Documentation forthcoming</td>
+<td>Represents an approximation of the client&rsquo;s budget. Accepted values are (1, 2, 3) and must be passed as an integer. 1 indicates &ldquo;value matches&rdquo; are desired by the client, 2 indicates &ldquo;standard matches&rdquo; are desired by the client, 3 indicates the client wants to see &ldquo;premium matches&rdquo;.</td>
 </tr>
 <tr>
 <td>speed</td>
-<td>Accepted value range (-1, 0, 1 as integer). Documentation forthcoming</td>
+<td>Accepted values are (-1, 0, 1) and must be passed as an integer. This is a proxy for urgency (-1 indicates &ldquo;not urgent&rdquo;, 0 is &ldquo;normal&rdquo;, and 1 is &ldquo;very urgent&rdquo;). This is being deprecated in favor of a proper date/time field which will be documented shortly.</td>
 </tr>
 <tr>
 <td>location</td>
-<td>The ID of the location where the job will take place, a list of accepted locations and their ids can be found <a href="https://www.talkbusinessanywhere.com/api/v1/locations">here</a>. For on the phone interpretations and translations please use id <strong>1374</strong>.</td>
+<td>The ID of the location where the job will take place, a list of accepted locations and their ids can be found <a href="https://www.talkbusinessanywhere.com/api/v1/locations">here</a> (JSON). For on the phone interpretations and translations please use id <strong>1374</strong>.</td>
 </tr>
 <tr>
 <td>jobid</td>
@@ -301,19 +303,19 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 </tr>
 <tr>
 <td>service_type</td>
-<td><em>&ldquo;interpretation&rdquo;</em> or <em>&ldquo;translation&rdquo;</em></td>
+<td><em>&ldquo;interpretation&rdquo;</em> (e.g., phone calls or live meetings) or <em>&ldquo;translation&rdquo;</em> (e.g., documents)</td>
 </tr>
 <tr>
 <td>target_language</td>
-<td>The ID of the language the target audience speak, a list of accepted languages and their ids can be found <a href="https://www.talkbusinessanywhere.com/api/v1/languages">here</a></td>
+<td>The ID of the language the target audience speak, a list of accepted languages and their ids can be found <a href="https://www.talkbusinessanywhere.com/api/v1/languages">here</a> (JSON)</td>
 </tr>
 <tr>
 <td>source_language</td>
-<td>The ID of the language the speaker uses, a list of accepted languages and their ids can be found <a href="https://www.talkbusinessanywhere.com/api/v1/languages">here</a></td>
+<td>The ID of the language the speaker uses, a list of accepted languages and their ids can be found <a href="https://www.talkbusinessanywhere.com/api/v1/languages">here</a> (JSON)</td>
 </tr>
 <tr>
 <td>industry</td>
-<td>The related industry of the job, in string and lower case. A list of accepted industries can be found <a href="javascripts/industries.json">here</a></td>
+<td>The related industry of the job, in string and lower case. A list of accepted industries can be found <a href="javascripts/industries.json">here</a> (JSON)</td>
 </tr>
 </tbody></table>
 
@@ -350,6 +352,10 @@ Remember — a successful request is an authenticated one!
 </span></code></pre>
 <p>This endpoint creates a new job with given location, target and source languages and industry on Cadence&rsquo;s platform.</p>
 
+<aside class="alert">
+This endpoint is not yet available.
+</aside>
+
 <h3 id="http-request">HTTP Request</h3>
 
 <p><code class="prettyprint">POST https://smart-match-staging.herokuapp.com/create_job</code></p>
@@ -364,19 +370,19 @@ Remember — a successful request is an authenticated one!
 </thead><tbody>
 <tr>
 <td>quality</td>
-<td>Accepted value range (1-3, as integer). Documentation forthcoming</td>
+<td>Represents how important industry knowledge is to the match. Accepted values are (1, 2, 3) and must be passed as an integer. 1 indicates &ldquo;low priority&rdquo;, 2 indicates &ldquo;medium priority&rdquo; and 3 indicates &ldquo;high priority&rdquo;.</td>
 </tr>
 <tr>
 <td>price</td>
-<td>Accepted value range (1-3, as integer). Documentation forthcoming</td>
+<td>Represents an approximation of the client&rsquo;s budget. Accepted values are (1, 2, 3) and must be passed as an integer. 1 indicates &ldquo;value matches&rdquo; are desired by the client, 2 indicates &ldquo;standard matches&rdquo; are desired by the client, 3 indicates the client wants to see &ldquo;premium matches&rdquo;.</td>
 </tr>
 <tr>
 <td>speed</td>
-<td>Accepted value range (-1, 0, 1 as integer). Documentation forthcoming</td>
+<td>Accepted values are (-1, 0, 1) and must be passed as an integer. This is a proxy for urgency (-1 indicates &ldquo;not urgent&rdquo;, 0 is &ldquo;normal&rdquo;, and 1 is &ldquo;very urgent&rdquo;). This is being deprecated in favor of a proper date/time field which will be documented shortly.</td>
 </tr>
 <tr>
 <td>location</td>
-<td>The ID of the location where the job will take place, a list of accepted locations and their ids can be found <a href="https://www.talkbusinessanywhere.com/api/v1/locations">here</a>. For on the phone interpretations and translations please use id <strong>1374</strong>.</td>
+<td>The ID of the location where the job will take place, a list of accepted locations and their ids can be found <a href="https://www.talkbusinessanywhere.com/api/v1/locations">here</a> (JSON). For on the phone interpretations and translations please use id <strong>1374</strong>.</td>
 </tr>
 <tr>
 <td>date</td>
@@ -384,19 +390,19 @@ Remember — a successful request is an authenticated one!
 </tr>
 <tr>
 <td>service_type</td>
-<td><em>&ldquo;interpretation&rdquo;</em> or <em>&ldquo;translation&rdquo;</em></td>
+<td><em>&ldquo;interpretation&rdquo;</em> (e.g., phone calls or live meetings) or <em>&ldquo;translation&rdquo;</em> (e.g., documents)</td>
 </tr>
 <tr>
 <td>target_language</td>
-<td>The ID of the language the target audience speak, a list of accepted languages and their ids can be found <a href="https://www.talkbusinessanywhere.com/api/v1/languages">here</a></td>
+<td>The ID of the language the target audience speak, a list of accepted languages and their ids can be found <a href="https://www.talkbusinessanywhere.com/api/v1/languages">here</a> (JSON)</td>
 </tr>
 <tr>
 <td>source_language</td>
-<td>The ID of the language the speaker uses, a list of accepted languages and their ids can be found <a href="https://www.talkbusinessanywhere.com/api/v1/languages">here</a></td>
+<td>The ID of the language the speaker uses, a list of accepted languages and their ids can be found <a href="https://www.talkbusinessanywhere.com/api/v1/languages">here</a> (JSON)</td>
 </tr>
 <tr>
 <td>industry</td>
-<td>The related industry of the job, in string and lower case. A list of accepted industries can be found <a href="javascripts/industries.json">here</a></td>
+<td>The related industry of the job, in string and lower case. A list of accepted industries can be found <a href="javascripts/industries.json">here</a> (JSON)</td>
 </tr>
 </tbody></table>
 
