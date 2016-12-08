@@ -96,6 +96,14 @@ target_language | The ID of the language the target audience speak, a list of ac
 source_language | The ID of the language the speaker uses, a list of accepted languages and their ids can be found [here](https://www.talkbusinessanywhere.com/api/v1/languages)
 industry | The related industry of the job, in string and lower case. A list of accepted industries can be found [here](/javascripts/industries.json)
 
+### Response
+
+Property | Description
+--------- | -----------
+avatars | An array of avatar urls of potential candidates.
+price | Estimated price in USD.
+status | Indicating request success or failure.
+
 ## Validate job submission
 
 ```shell
@@ -193,3 +201,9 @@ target_language | The ID of the language the target audience speak, a list of ac
 source_language | The ID of the language the speaker uses, a list of accepted languages and their ids can be found [here](https://www.talkbusinessanywhere.com/api/v1/languages)
 industry | The related industry of the job, in string and lower case. A list of accepted industries can be found [here](/javascripts/industries.json)
 
+### Response
+
+Property | Description
+--------- | -----------
+job | JSON object of the created job, with auto-generated **title** property contains date, language and location information.
+status | Indicating request success or failure.
