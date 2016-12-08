@@ -3,12 +3,9 @@ title: API Reference
 
 language_tabs:
   - shell
-  - ruby
-  - python
-  - javascript
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
+  - <a href='#'>Request a new API Key</a>
   - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
@@ -19,27 +16,13 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the smart-match API! You can use our API to create new interpretation and translation jobs on [Cadence's platform](https://www.talkbusinessanywhere.com).
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+This example API documentation page was created with [Slate](https://github.com/tripit/slate).
 
 # Authentication
 
 > To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
 
 ```shell
 # With shell, you can just pass the correct header with each request
@@ -47,17 +30,11 @@ curl "api_endpoint_here"
   -H "Authorization: meowmeowmeow"
 ```
 
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
 > Make sure to replace `meowmeowmeow` with your API key.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+Smart-match uses API keys to identify users of our API. You can [contact us](http://support.talkbusinessanywhere.com/) to request a new API key.
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+Smart-match expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
 `Authorization: meowmeowmeow`
 
@@ -65,125 +42,102 @@ Kittn expects for the API key to be included in all API requests to the server i
 You must replace <code>meowmeowmeow</code> with your personal API key.
 </aside>
 
-# Kittens
+# Smart-match
 
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+## Validate job submission
 
 ```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
+curl -X POST -H "Content-Type: application/json" -H "Authorization: meowmeowmeow" -d '{"quality": 2
+, "price": 1
+, "speed": 2
+, "jobid" : 100
+, "location": 1
+, "service_type": "interpretation"
+, "target_language": 1
+, "source_language": 10
+, "industry": "clothing" }' "https://smart-match-staging.herokuapp.com/get_price"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "status": "OK"
 }
 ```
 
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+This endpoint verifies whether the parameters are valid for creating a new job.
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`POST https://smart-match-staging.herokuapp.com/submit_job`
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+quality | Accepted value range (1-3), documentation forthcoming
+price | Accepted value range (1-3), documentation forthcoming
+speed | Accepted value range (-1, 0, 1), documentation forthcoming
+location | The ID of the location where the job will take place, a list of accepted locations and their ids can be found [here](https://www.talkbusinessanywhere.com/api/v1/locations). For on the phone interpretations and translations please use id **1374**.
+jobid | The ID of the job for internal use, any number accepted here.
+service_type | *"interpretation"* or *"translation"*
+target_language | The ID of the language the target audience speak, a list of accepted languages and their ids can be found [here](https://www.talkbusinessanywhere.com/api/v1/languages)
+source_language | The ID of the language the speaker uses, a list of accepted languages and their ids can be found [here](https://www.talkbusinessanywhere.com/api/v1/languages)
+industry | The related industry of the job.
+
+<aside class="success">
+Remember — a successful request is an authenticated one!
+</aside>
+
+## Create a new job
+
+```shell
+curl -X POST -H "Content-Type: application/json" -H "Authorization: meowmeowmeow" -d '{"quality": 2
+, "price": 1
+, "speed": 2
+, "date" : "2016-12-21"
+, "location": 1
+, "service_type": "interpretation"
+, "target_language": 1
+, "source_language": 10
+, "industry": "clothing" }' "https://smart-match-staging.herokuapp.com/create_job"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "job": {
+    "id": 2,
+    "industry": "agriculture",
+    "language_pairs": {"language_to": "Mandarin", "language_from": "English"},
+    "location": "Shanghai",
+    "price": 120,
+    "start_date": "2016-09-27T12:00:00Z",
+    "title": "September 27 2016 English / Mandarin Interpreting (in-person) in Shanghai for Agriculture"
+  },
+  "status": "OK"
+}
+```
+
+This endpoint creates a new job with given location, target and source languages and industry on Cadence's platform.
+
+### HTTP Request
+
+`POST https://smart-match-staging.herokuapp.com/create_job`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the kitten to retrieve
+quality | Accepted value range (1-3), documentation forthcoming
+price | Accepted value range (1-3), documentation forthcoming
+speed | Accepted value range (-1, 0, 1), documentation forthcoming
+location | The ID of the location where the job will take place, a list of accepted locations and their ids can be found [here](https://www.talkbusinessanywhere.com/api/v1/locations). For on the phone interpretations and translations please use id **1374**.
+date | The date on which an interpretation job will happen or a translation job will be due. If no value was passed in, the date will be considered **"TBD"**
+service_type | *"interpretation"* or *"translation"*
+target_language | The ID of the language the target audience speak, a list of accepted languages and their ids can be found [here](https://www.talkbusinessanywhere.com/api/v1/languages)
+source_language | The ID of the language the speaker uses, a list of accepted languages and their ids can be found [here](https://www.talkbusinessanywhere.com/api/v1/languages)
+industry | The related industry of the job.
 
