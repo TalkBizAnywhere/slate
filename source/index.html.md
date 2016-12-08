@@ -36,7 +36,7 @@ curl "api_endpoint_here"
 
 > Make sure to replace `meowmeowmeow` with your API key.
 
-API keys are used to authenticate users of our API. You can [contact us](http://support.talkbusinessanywhere.com/) to request a new API key.
+API keys are used to authenticate users of our API. You can [contact us](mailto:matt@talkbusinessanywhere.com) to request a new API key.
 
 The API key is expected to be included in all API requests to the server in a header that looks like the following:
 
@@ -87,21 +87,21 @@ This endpoint returns a price generated from the parameters represent a given jo
 
 Parameter | Description
 --------- | -----------
-quality | Accepted value range (1-3, as integer). Documentation forthcoming
-price | Accepted value range (1-3, as integer). Documentation forthcoming
-speed | Accepted value range (-1, 0, 1 as integer). Documentation forthcoming
-location | The ID of the location where the job will take place, a list of accepted locations and their ids can be found [here](https://www.talkbusinessanywhere.com/api/v1/locations). For on the phone interpretations and translations please use id **1374**.
-service_type | *"interpretation"* or *"translation"*
-target_language | The ID of the language the target audience speak, a list of accepted languages and their ids can be found [here](https://www.talkbusinessanywhere.com/api/v1/languages)
-source_language | The ID of the language the speaker uses, a list of accepted languages and their ids can be found [here](https://www.talkbusinessanywhere.com/api/v1/languages)
-industry | The related industry of the job, in string and lower case. A list of accepted industries can be found [here](/javascripts/industries.json)
+quality | Represents how important industry knowledge is to the match. Accepted values are (1, 2, 3) and must be passed as an integer. 1 indicates "low priority", 2 indicates "medium priority" and 3 indicates "high priority".
+price | Represents an approximation of the client's budget. Accepted values are (1, 2, 3) and must be passed as an integer. 1 indicates "value matches" are desired by the client, 2 indicates "standard matches" are desired by the client, 3 indicates the client wants to see "premium matches".
+speed | Accepted values are (-1, 0, 1) and must be passed as an integer. This is a proxy for urgency (-1 indicates "not urgent", 0 is "normal", and 1 is "very urgent"). This is being deprecated in favor of a proper date/time field which will be documented shortly.
+location | The ID of the location where the job will take place, a list of accepted locations and their ids can be found [here](https://www.talkbusinessanywhere.com/api/v1/locations) (JSON). For on the phone interpretations and translations, please use id **1374**.
+service_type | *"interpretation"* (e.g., phone calls or live meetings) or *"translation"* (e.g., documents)
+target_language | The ID of the language the target audience speak, a list of accepted languages and their ids can be found [here](https://www.talkbusinessanywhere.com/api/v1/languages) (JSON)
+source_language | The ID of the language the speaker uses, a list of accepted languages and their ids can be found [here](https://www.talkbusinessanywhere.com/api/v1/languages) (JSON)
+industry | The related industry of the job, in string and lower case. A list of accepted industries can be found [here](/javascripts/industries.json) (JSON)
 
 ### Response
 
 Property | Description
 --------- | -----------
 avatars | An array of avatar urls of potential candidates.
-price | Estimated price in USD.
+price | Estimated price in USD (per hour if *interpretation*, per 100 words if *translation*)
 status | Indicating request success or failure.
 
 ## Validate job submission
@@ -125,8 +125,9 @@ curl -X POST -H "Content-Type: application/json" -H "Authorization: meowmeowmeow
   "status": "OK"
 }
 ```
-
-This endpoint verifies whether the parameters are valid for creating a new job.
+<aside class="notice">
+This endpoint verifies whether the parameters are valid for creating a new job. The current naming of this endpoint will change: *submit_job* will become *validate_job*.
+</aside>
 
 ### HTTP Request
 
@@ -136,15 +137,15 @@ This endpoint verifies whether the parameters are valid for creating a new job.
 
 Parameter | Description
 --------- | -----------
-quality | Accepted value range (1-3, as integer). Documentation forthcoming
-price | Accepted value range (1-3, as integer). Documentation forthcoming
-speed | Accepted value range (-1, 0, 1 as integer). Documentation forthcoming
-location | The ID of the location where the job will take place, a list of accepted locations and their ids can be found [here](https://www.talkbusinessanywhere.com/api/v1/locations). For on the phone interpretations and translations please use id **1374**.
+quality | Represents how important industry knowledge is to the match. Accepted values are (1, 2, 3) and must be passed as an integer. 1 indicates "low priority", 2 indicates "medium priority" and 3 indicates "high priority".
+price | Represents an approximation of the client's budget. Accepted values are (1, 2, 3) and must be passed as an integer. 1 indicates "value matches" are desired by the client, 2 indicates "standard matches" are desired by the client, 3 indicates the client wants to see "premium matches".
+speed | Accepted values are (-1, 0, 1) and must be passed as an integer. This is a proxy for urgency (-1 indicates "not urgent", 0 is "normal", and 1 is "very urgent"). This is being deprecated in favor of a proper date/time field which will be documented shortly.
+location | The ID of the location where the job will take place, a list of accepted locations and their ids can be found [here](https://www.talkbusinessanywhere.com/api/v1/locations) (JSON). For on the phone interpretations and translations please use id **1374**.
 jobid | The ID of the job for internal use, any number accepted here.
-service_type | *"interpretation"* or *"translation"*
-target_language | The ID of the language the target audience speak, a list of accepted languages and their ids can be found [here](https://www.talkbusinessanywhere.com/api/v1/languages)
-source_language | The ID of the language the speaker uses, a list of accepted languages and their ids can be found [here](https://www.talkbusinessanywhere.com/api/v1/languages)
-industry | The related industry of the job, in string and lower case. A list of accepted industries can be found [here](/javascripts/industries.json)
+service_type | *"interpretation"* (e.g., phone calls or live meetings) or *"translation"* (e.g., documents)
+target_language | The ID of the language the target audience speak, a list of accepted languages and their ids can be found [here](https://www.talkbusinessanywhere.com/api/v1/languages) (JSON)
+source_language | The ID of the language the speaker uses, a list of accepted languages and their ids can be found [here](https://www.talkbusinessanywhere.com/api/v1/languages) (JSON)
+industry | The related industry of the job, in string and lower case. A list of accepted industries can be found [here](/javascripts/industries.json) (JSON)
 
 <aside class="success">
 Remember — a successful request is an authenticated one!
@@ -183,6 +184,10 @@ curl -X POST -H "Content-Type: application/json" -H "Authorization: meowmeowmeow
 
 This endpoint creates a new job with given location, target and source languages and industry on Cadence's platform.
 
+<aside class="alert">
+This endpoint is not yet available.
+</aside>
+
 ### HTTP Request
 
 `POST https://smart-match-staging.herokuapp.com/create_job`
@@ -191,15 +196,15 @@ This endpoint creates a new job with given location, target and source languages
 
 Parameter | Description
 --------- | -----------
-quality | Accepted value range (1-3, as integer). Documentation forthcoming
-price | Accepted value range (1-3, as integer). Documentation forthcoming
-speed | Accepted value range (-1, 0, 1 as integer). Documentation forthcoming
-location | The ID of the location where the job will take place, a list of accepted locations and their ids can be found [here](https://www.talkbusinessanywhere.com/api/v1/locations). For on the phone interpretations and translations please use id **1374**.
+quality | Represents how important industry knowledge is to the match. Accepted values are (1, 2, 3) and must be passed as an integer. 1 indicates "low priority", 2 indicates "medium priority" and 3 indicates "high priority".
+price | Represents an approximation of the client's budget. Accepted values are (1, 2, 3) and must be passed as an integer. 1 indicates "value matches" are desired by the client, 2 indicates "standard matches" are desired by the client, 3 indicates the client wants to see "premium matches".
+speed | Accepted values are (-1, 0, 1) and must be passed as an integer. This is a proxy for urgency (-1 indicates "not urgent", 0 is "normal", and 1 is "very urgent"). This is being deprecated in favor of a proper date/time field which will be documented shortly.
+location | The ID of the location where the job will take place, a list of accepted locations and their ids can be found [here](https://www.talkbusinessanywhere.com/api/v1/locations) (JSON). For on the phone interpretations and translations please use id **1374**.
 date | The date on which an interpretation job will happen or a translation job will be due. If no value was passed in, the date will be considered **"TBD"**
-service_type | *"interpretation"* or *"translation"*
-target_language | The ID of the language the target audience speak, a list of accepted languages and their ids can be found [here](https://www.talkbusinessanywhere.com/api/v1/languages)
-source_language | The ID of the language the speaker uses, a list of accepted languages and their ids can be found [here](https://www.talkbusinessanywhere.com/api/v1/languages)
-industry | The related industry of the job, in string and lower case. A list of accepted industries can be found [here](/javascripts/industries.json)
+service_type | *"interpretation"* (e.g., phone calls or live meetings) or *"translation"* (e.g., documents)
+target_language | The ID of the language the target audience speak, a list of accepted languages and their ids can be found [here](https://www.talkbusinessanywhere.com/api/v1/languages) (JSON)
+source_language | The ID of the language the speaker uses, a list of accepted languages and their ids can be found [here](https://www.talkbusinessanywhere.com/api/v1/languages) (JSON)
+industry | The related industry of the job, in string and lower case. A list of accepted industries can be found [here](/javascripts/industries.json) (JSON)
 
 ### Response
 
