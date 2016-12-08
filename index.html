@@ -225,6 +225,28 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 </tr>
 </tbody></table>
 
+<h3 id="response">Response</h3>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>avatars</td>
+<td>An array of avatar urls of potential candidates.</td>
+</tr>
+<tr>
+<td>price</td>
+<td>Estimated price in USD.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>Indicating request success or failure.</td>
+</tr>
+</tbody></table>
+
 <h2 id="validate-job-submission">Validate job submission</h2>
 <pre class="highlight shell"><code>curl -X POST -H <span class="s2">"Content-Type: application/json"</span> -H <span class="s2">"Authorization: meowmeowmeow"</span> -d <span class="s1">'{"quality": 2
 , "price": 1
@@ -375,6 +397,24 @@ Remember — a successful request is an authenticated one!
 <tr>
 <td>industry</td>
 <td>The related industry of the job, in string and lower case. A list of accepted industries can be found <a href="javascripts/industries.json">here</a></td>
+</tr>
+</tbody></table>
+
+<h3 id="response">Response</h3>
+
+<table><thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>job</td>
+<td>JSON object of the created job, with auto-generated <strong>title</strong> property contains date, language and location information.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>Indicating request success or failure.</td>
 </tr>
 </tbody></table>
 
