@@ -20,6 +20,10 @@ Welcome to the Cadence API! You can use our API to create new interpretation and
 
 This example API documentation page was created with [Slate](https://github.com/tripit/slate).
 
+# Basics
+
+All methods must be called using HTTPS. Arguments can be passed as POST, with query params placed in the body of the JSON payload. The response contains a JSON object, which contains a top-level property status, indicating success or failure.
+
 # Authentication
 
 > To authorize, use this code:
@@ -42,7 +46,7 @@ The API key is expected to be included in all API requests to the server in a he
 You must replace <code>meowmeowmeow</code> with your personal API key.
 </aside>
 
-# Smart-match
+# Jobs API
 
 ## Get a quote for a job
 
@@ -90,7 +94,7 @@ location | The ID of the location where the job will take place, a list of accep
 service_type | *"interpretation"* or *"translation"*
 target_language | The ID of the language the target audience speak, a list of accepted languages and their ids can be found [here](https://www.talkbusinessanywhere.com/api/v1/languages)
 source_language | The ID of the language the speaker uses, a list of accepted languages and their ids can be found [here](https://www.talkbusinessanywhere.com/api/v1/languages)
-industry | The related industry of the job.
+industry | The related industry of the job, in string and lower case. A list of accepted industries can be found [here](/javascripts/industries.json)
 
 ## Validate job submission
 
@@ -132,7 +136,7 @@ jobid | The ID of the job for internal use, any number accepted here.
 service_type | *"interpretation"* or *"translation"*
 target_language | The ID of the language the target audience speak, a list of accepted languages and their ids can be found [here](https://www.talkbusinessanywhere.com/api/v1/languages)
 source_language | The ID of the language the speaker uses, a list of accepted languages and their ids can be found [here](https://www.talkbusinessanywhere.com/api/v1/languages)
-industry | The related industry of the job.
+industry | The related industry of the job, in string and lower case. A list of accepted industries can be found [here](/javascripts/industries.json)
 
 <aside class="success">
 Remember — a successful request is an authenticated one!
@@ -187,5 +191,5 @@ date | The date on which an interpretation job will happen or a translation job 
 service_type | *"interpretation"* or *"translation"*
 target_language | The ID of the language the target audience speak, a list of accepted languages and their ids can be found [here](https://www.talkbusinessanywhere.com/api/v1/languages)
 source_language | The ID of the language the speaker uses, a list of accepted languages and their ids can be found [here](https://www.talkbusinessanywhere.com/api/v1/languages)
-industry | The related industry of the job.
+industry | The related industry of the job, in string and lower case. A list of accepted industries can be found [here](/javascripts/industries.json)
 
