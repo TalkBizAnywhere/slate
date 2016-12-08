@@ -16,7 +16,7 @@ search: true
 
 # Introduction
 
-Welcome to the smart-match API! You can use our API to create new interpretation and translation jobs on [Cadence's platform](https://www.talkbusinessanywhere.com).
+Welcome to the Cadence API! You can use our API to create new interpretation and translation jobs on [Cadence's platform](https://www.talkbusinessanywhere.com).
 
 This example API documentation page was created with [Slate](https://github.com/tripit/slate).
 
@@ -32,9 +32,9 @@ curl "api_endpoint_here"
 
 > Make sure to replace `meowmeowmeow` with your API key.
 
-Smart-match uses API keys to identify users of our API. You can [contact us](http://support.talkbusinessanywhere.com/) to request a new API key.
+API keys are used to authenticate users of our API. You can [contact us](http://support.talkbusinessanywhere.com/) to request a new API key.
 
-Smart-match expects for the API key to be included in all API requests to the server in a header that looks like the following:
+The API key is expected to be included in all API requests to the server in a header that looks like the following:
 
 `Authorization: meowmeowmeow`
 
@@ -43,6 +43,54 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 </aside>
 
 # Smart-match
+
+## Get a quote for a job
+
+```shell
+curl -X POST -H "Content-Type: application/json" -H "Authorization: meowmeowmeow" -d '{"quality": 2
+, "price": 1
+, "speed": 2
+, "location": 1
+, "service_type": "interpretation"
+, "target_language": 1
+, "source_language": 18
+, "industry": "clothing" }' "https://smart-match-staging.herokuapp.com/get_price"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "avatars": {
+    "37": "https://seekpanda-prod.imgix.net/415/415.jpg?1454485805716",
+    "542": "0",
+    "556": "https://seekpanda-prod.imgix.net/512/512.jpg?1456992837691",
+    "626": "",
+    "1115": "https://seekpanda-prod.imgix.net/2195/2195.jpg?1477496937121"
+  },
+  "price": 165,
+  "status": "OK"
+}
+```
+
+This endpoint returns a price generated from the parameters represent a given job.
+
+### HTTP Request
+
+`POST https://smart-match-staging.herokuapp.com/get_price`
+
+### Query Parameters
+
+Parameter | Description
+--------- | -----------
+quality | Accepted value range (1-3, as integer). Documentation forthcoming
+price | Accepted value range (1-3, as integer). Documentation forthcoming
+speed | Accepted value range (-1, 0, 1 as integer). Documentation forthcoming
+location | The ID of the location where the job will take place, a list of accepted locations and their ids can be found [here](https://www.talkbusinessanywhere.com/api/v1/locations). For on the phone interpretations and translations please use id **1374**.
+service_type | *"interpretation"* or *"translation"*
+target_language | The ID of the language the target audience speak, a list of accepted languages and their ids can be found [here](https://www.talkbusinessanywhere.com/api/v1/languages)
+source_language | The ID of the language the speaker uses, a list of accepted languages and their ids can be found [here](https://www.talkbusinessanywhere.com/api/v1/languages)
+industry | The related industry of the job.
 
 ## Validate job submission
 
@@ -55,7 +103,7 @@ curl -X POST -H "Content-Type: application/json" -H "Authorization: meowmeowmeow
 , "service_type": "interpretation"
 , "target_language": 1
 , "source_language": 10
-, "industry": "clothing" }' "https://smart-match-staging.herokuapp.com/get_price"
+, "industry": "clothing" }' "https://smart-match-staging.herokuapp.com/submit_job"
 ```
 
 > The above command returns JSON structured like this:
@@ -76,9 +124,9 @@ This endpoint verifies whether the parameters are valid for creating a new job.
 
 Parameter | Description
 --------- | -----------
-quality | Accepted value range (1-3), documentation forthcoming
-price | Accepted value range (1-3), documentation forthcoming
-speed | Accepted value range (-1, 0, 1), documentation forthcoming
+quality | Accepted value range (1-3, as integer). Documentation forthcoming
+price | Accepted value range (1-3, as integer). Documentation forthcoming
+speed | Accepted value range (-1, 0, 1 as integer). Documentation forthcoming
 location | The ID of the location where the job will take place, a list of accepted locations and their ids can be found [here](https://www.talkbusinessanywhere.com/api/v1/locations). For on the phone interpretations and translations please use id **1374**.
 jobid | The ID of the job for internal use, any number accepted here.
 service_type | *"interpretation"* or *"translation"*
@@ -131,9 +179,9 @@ This endpoint creates a new job with given location, target and source languages
 
 Parameter | Description
 --------- | -----------
-quality | Accepted value range (1-3), documentation forthcoming
-price | Accepted value range (1-3), documentation forthcoming
-speed | Accepted value range (-1, 0, 1), documentation forthcoming
+quality | Accepted value range (1-3, as integer). Documentation forthcoming
+price | Accepted value range (1-3, as integer). Documentation forthcoming
+speed | Accepted value range (-1, 0, 1 as integer). Documentation forthcoming
 location | The ID of the location where the job will take place, a list of accepted locations and their ids can be found [here](https://www.talkbusinessanywhere.com/api/v1/locations). For on the phone interpretations and translations please use id **1374**.
 date | The date on which an interpretation job will happen or a translation job will be due. If no value was passed in, the date will be considered **"TBD"**
 service_type | *"interpretation"* or *"translation"*
