@@ -99,7 +99,7 @@
       </span>
     </a>
     <div class="tocify-wrapper">
-      <img src="images/logo.png" alt="Logo" />
+      <img src="images/logo.png" class="logo" alt="Logo" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
         </div>
@@ -122,6 +122,10 @@
 <p>Welcome to the Cadence API! You can use our API to create new interpretation and translation jobs on <a href="https://www.talkbusinessanywhere.com">Cadence&rsquo;s platform</a>.</p>
 
 <p>This example API documentation page was created with <a href="https://github.com/tripit/slate">Slate</a>.</p>
+
+<h1 id="basics">Basics</h1>
+
+<p>All methods must be called using HTTPS. Arguments can be passed as POST, with query params placed in the body of the JSON payload. The response contains a JSON object, which contains a top-level property status, indicating success or failure.</p>
 
 <h1 id="authentication">Authentication</h1>
 
@@ -146,7 +150,7 @@ curl <span class="s2">"api_endpoint_here"</span>
 You must replace <code>meowmeowmeow</code> with your personal API key.
 </aside>
 
-<h1 id="smart-match">Smart-match</h1>
+<h1 id="jobs-api">Jobs API</h1>
 
 <h2 id="get-a-quote-for-a-job">Get a quote for a job</h2>
 <pre class="highlight shell"><code>curl -X POST -H <span class="s2">"Content-Type: application/json"</span> -H <span class="s2">"Authorization: meowmeowmeow"</span> -d <span class="s1">'{"quality": 2
@@ -217,7 +221,7 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 </tr>
 <tr>
 <td>industry</td>
-<td>The related industry of the job.</td>
+<td>The related industry of the job, in string and lower case. A list of accepted industries can be found <a href="javascripts/industries.json">here</a></td>
 </tr>
 </tbody></table>
 
@@ -287,7 +291,7 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 </tr>
 <tr>
 <td>industry</td>
-<td>The related industry of the job.</td>
+<td>The related industry of the job, in string and lower case. A list of accepted industries can be found <a href="javascripts/industries.json">here</a></td>
 </tr>
 </tbody></table>
 
@@ -370,7 +374,7 @@ Remember — a successful request is an authenticated one!
 </tr>
 <tr>
 <td>industry</td>
-<td>The related industry of the job.</td>
+<td>The related industry of the job, in string and lower case. A list of accepted industries can be found <a href="javascripts/industries.json">here</a></td>
 </tr>
 </tbody></table>
 

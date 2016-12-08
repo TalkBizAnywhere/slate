@@ -1,0 +1,359 @@
+{
+  "industries": [{
+    "display": "Accounting",
+    "db": "accounting"
+  }, {
+    "display": "Advertising",
+    "db": "advertising"
+  }, {
+    "display": "Aerospace",
+    "db": "aerospace"
+  }, {
+    "db": "agriculture"
+  }, {
+    "display": "Anthropology",
+    "db": "anthropology"
+  }, {
+    "display": "Archaeology",
+    "db": "archaeology"
+  }, {
+    "display": "Architecture",
+    "db": "architecture"
+  }, {
+    "display": "Art",
+    "db": "art"
+  }, {
+    "display": "Automotive",
+    "db": "automotive"
+  }, {
+    "display": "Aviation",
+    "db": "aviation"
+  }, {
+    "display": "Banking",
+    "db": "banking"
+  }, {
+    "display": "Big Data",
+    "db": "big_data"
+  }, {
+    "display": "Biochemistry",
+    "db": "biochemistry"
+  }, {
+    "display": "Biology",
+    "db": "biology"
+  }, {
+    "display": "Biotechnology",
+    "db": "biotechnology"
+  }, {
+    "display": "Casino",
+    "db": "casino"
+  }, {
+    "display": "Chemicals and materials",
+    "db": "chemicals_and_materials"
+  }, {
+    "display": "Civil engineering",
+    "db": "civil_engineering"
+  }, {
+    "display": "Clothing",
+    "db": "clothing"
+  }, {
+    "display": "Cloud computing",
+    "db": "cloud_computing"
+  }, {
+    "display": "Computers",
+    "db": "computers"
+  }, {
+    "display": "Construction",
+    "db": "construction"
+  }, {
+    "display": "Consumer goods",
+    "db": "consumer_goods"
+  }, {
+    "display": "Cosmetics",
+    "db": "cosmetics"
+  }, {
+    "display": "Defense",
+    "db": "defense"
+  }, {
+    "display": "Ecology",
+    "db": "ecology"
+  }, {
+    "display": "Economics",
+    "db": "economics"
+  }, {
+    "display": "Education",
+    "db": "education"
+  }, {
+    "display": "Electrical engineering",
+    "db": "electrical_engineering"
+  }, {
+    "display": "Electricity",
+    "db": "electricity"
+  }, {
+    "display": "Electronics",
+    "db": "electronics"
+  }, {
+    "display": "Energy",
+    "db": "energy"
+  }, {
+    "display": "Entertainment",
+    "db": "entertainment"
+  }, {
+    "display": "Environment",
+    "db": "environment"
+  }, {
+    "display": "Farming",
+    "db": "farming"
+  }, {
+    "display": "Fashion",
+    "db": "fashion"
+  }, {
+    "display": "Film/Movies",
+    "db": "film/movies"
+  }, {
+    "display": "Finance",
+    "db": "finance"
+  }, {
+    "display": "FMCG",
+    "db": "fmcg"
+  }, {
+    "display": "Food & Beverages",
+    "db": "food_and_beverages"
+  }, {
+    "display": "Fuels",
+    "db": "fuels"
+  }, {
+    "display": "Games, Leisure & Amusement",
+    "db": "games_leisure_and_amusement"
+  }, {
+    "display": "Genealogy",
+    "db": "genealogy"
+  }, {
+    "display": "Geography",
+    "db": "geography"
+  }, {
+    "display": "Geology",
+    "db": "geology"
+  }, {
+    "display": "Glass and ceramics",
+    "db": "glass_and_ceramics"
+  }, {
+    "display": "Government and politics",
+    "db": "government_and_politics"
+  }, {
+    "display": "Hazardous materials",
+    "db": "hazardous_materials"
+  }, {
+    "display": "Healthcare",
+    "db": "healthcare"
+  }, {
+    "display": "Holistic medicine",
+    "db": "holistic_medicine"
+  }, {
+    "display": "Hospitality",
+    "db": "hospitality"
+  }, {
+    "display": "Hospitals",
+    "db": "hospitals"
+  }, {
+    "display": "Household chemicals",
+    "db": "household_chemicals"
+  }, {
+    "display": "Household products",
+    "db": "household_products"
+  }, {
+    "display": "Human rights",
+    "db": "human_rights"
+  }, {
+    "display": "Humanities",
+    "db": "humanities"
+  }, {
+    "display": "Immunology",
+    "db": "immunology"
+  }, {
+    "display": "Industrial abrasives",
+    "db": "industrial_abrasives"
+  }, {
+    "display": "Insurance",
+    "db": "insurance"
+  }, {
+    "display": "Internet",
+    "db": "internet"
+  }, {
+    "display": "IT ",
+    "db": "it_"
+  }, {
+    "display": "IT Hardware",
+    "db": "it_hardware"
+  }, {
+    "display": "Journalism",
+    "db": "journalism"
+  }, {
+    "display": "Kinesiology",
+    "db": "kinesiology"
+  }, {
+    "display": "Law",
+    "db": "law"
+  }, {
+    "display": "Logistics",
+    "db": "logistics"
+  }, {
+    "display": "Lottery",
+    "db": "lottery"
+  }, {
+    "display": "Machinery",
+    "db": "machinery"
+  }, {
+    "display": "Macroeconomics",
+    "db": "macroeconomics"
+  }, {
+    "display": "Manufacturing and production",
+    "db": "manufacturing_and_production"
+  }, {
+    "display": "Marketing",
+    "db": "marketing"
+  }, {
+    "display": "Media, information and comms",
+    "db": "media_information_and_comms"
+  }, {
+    "display": "Medical devices",
+    "db": "medical_devices"
+  }, {
+    "display": "Medicine",
+    "db": "medicine"
+  }, {
+    "display": "Metals",
+    "db": "metals"
+  }, {
+    "display": "Microeconomics",
+    "db": "microeconomics"
+  }, {
+    "display": "Mining",
+    "db": "mining"
+  }, {
+    "display": "Mobile telecoms",
+    "db": "mobile_telecoms"
+  }, {
+    "display": "Music",
+    "db": "music"
+  }, {
+    "display": "Oceanography",
+    "db": "oceanography"
+  }, {
+    "display": "Oil & gas",
+    "db": "oil_and_gas"
+  }, {
+    "display": "Optical instruments",
+    "db": "optical_instruments"
+  }, {
+    "display": "Optical networking",
+    "db": "optical_networking"
+  }, {
+    "display": "Paleontology",
+    "db": "paleontology"
+  }, {
+    "display": "Pharmaceuticals",
+    "db": "pharmaceuticals"
+  }, {
+    "display": "Photography",
+    "db": "photography"
+  }, {
+    "display": "Physical science",
+    "db": "physical_science"
+  }, {
+    "display": "Plant & shipbuilding",
+    "db": "plant_and_shipbuilding"
+  }, {
+    "display": "Politics",
+    "db": "politics"
+  }, {
+    "display": "Pottery",
+    "db": "pottery"
+  }, {
+    "display": "Precision instruments",
+    "db": "precision_instruments"
+  }, {
+    "display": "Public relations",
+    "db": "public_relations"
+  }, {
+    "display": "Publishing",
+    "db": "publishing"
+  }, {
+    "display": "Pulp and paper",
+    "db": "pulp_and_paper"
+  }, {
+    "display": "Real estate",
+    "db": "real_estate"
+  }, {
+    "display": "Recreation",
+    "db": "recreation"
+  }, {
+    "display": "Religion",
+    "db": "religion"
+  }, {
+    "display": "Renewable Energy",
+    "db": "renewable_energy"
+  }, {
+    "display": "Retail and wholesale",
+    "db": "retail_and_wholesale"
+  }, {
+    "display": "Risk management",
+    "db": "risk_management"
+  }, {
+    "display": "Science",
+    "db": "science"
+  }, {
+    "display": "Semiconductors",
+    "db": "semiconductors"
+  }, {
+    "display": "Service industries",
+    "db": "service_industries"
+  }, {
+    "display": "Social science",
+    "db": "social_science"
+  }, {
+    "display": "Software & programming",
+    "db": "software_and_programming"
+  }, {
+    "display": "Sports and entertainment",
+    "db": "sports_and_entertainment"
+  }, {
+    "display": "Stocks and investment",
+    "db": "stocks_and_investment"
+  }, {
+    "display": "Technology",
+    "db": "technology"
+  }, {
+    "display": "Telecom",
+    "db": "telecom"
+  }, {
+    "display": "Textiles",
+    "db": "textiles"
+  }, {
+    "display": "Theology",
+    "db": "theology"
+  }, {
+    "display": "Toxicology",
+    "db": "toxicology"
+  }, {
+    "display": "Traditional Chinese medicine",
+    "db": "traditional_chinese_medicine"
+  }, {
+    "display": "Transportation",
+    "db": "transportation"
+  }, {
+    "display": "Travel and tourism",
+    "db": "travel_and_tourism"
+  }, {
+    "display": "Veterinary medicine",
+    "db": "veterinary_medicine"
+  }, {
+    "display": "Video games",
+    "db": "video_games"
+  }, {
+    "display": "Waste management",
+    "db": "waste_management"
+  }, {
+    "display": "Zoology",
+    "db": "zoology"
+  }]
+}
