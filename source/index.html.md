@@ -58,7 +58,7 @@ curl -X POST -H "Content-Type: application/json" -H "Authorization: meowmeowmeow
 , "service_type": "interpretation"
 , "target_language": 1
 , "source_language": 18
-, "industry": "clothing" }' "https://smart-match-staging.herokuapp.com/get_price"
+, "industry": 142 }' "https://smart-match-staging.herokuapp.com/get_price"
 ```
 
 > The above command returns JSON structured like this:
@@ -90,11 +90,11 @@ Parameter | Description
 quality | Represents how important industry knowledge is to the match. Accepted values are (1, 2, 3) and must be passed as an integer. 1 indicates "low priority", 2 indicates "medium priority" and 3 indicates "high priority".
 price | Represents an approximation of the client's budget. Accepted values are (1, 2, 3) and must be passed as an integer. 1 indicates "value matches" are desired by the client, 2 indicates "standard matches" are desired by the client, 3 indicates the client wants to see "premium matches".
 speed | Accepted values are (-1, 0, 1) and must be passed as an integer. This is a proxy for urgency (-1 indicates "not urgent", 0 is "normal", and 1 is "very urgent"). This is being deprecated in favor of a proper date/time field which will be documented shortly.
-location | The ID of the location where the job will take place, a list of accepted locations and their ids can be found [here](https://www.talkbusinessanywhere.com/api/v1/locations) (JSON). For on the phone interpretations and translations, please use id **1374**.
+location | The ID of the location where the job will take place, a list of accepted locations and their ids can be found [here](https://app.talkbusinessanywhere.com/api/v1/locations) (JSON). For on the phone interpretations and translations, please use id **1374**.
 service_type | *"interpretation"* (e.g., phone calls or live meetings) or *"translation"* (e.g., documents)
-target_language | The ID of the language the target audience speak, a list of accepted languages and their ids can be found [here](https://www.talkbusinessanywhere.com/api/v1/languages) (JSON)
-source_language | The ID of the language the speaker uses, a list of accepted languages and their ids can be found [here](https://www.talkbusinessanywhere.com/api/v1/languages) (JSON)
-industry | The related industry of the job, in string and lower case. A list of accepted industries can be found [here](/javascripts/industries.json) (JSON)
+target_language | The ID of the language the target audience speak, a list of accepted languages and their ids can be found [here](https://app.talkbusinessanywhere.com/api/v1/languages) (JSON)
+source_language | The ID of the language the speaker uses, a list of accepted languages and their ids can be found [here](https://app.talkbusinessanywhere.com/api/v1/languages) (JSON)
+industry | The ID of the related industry this job belongs to. A list of accepted industries and their ids can be found [here](https://app.talkbusinessanywhere.com/api/v1/industries) (JSON)
 
 ### Response
 
@@ -115,7 +115,7 @@ curl -X POST -H "Content-Type: application/json" -H "Authorization: meowmeowmeow
 , "service_type": "interpretation"
 , "target_language": 1
 , "source_language": 10
-, "industry": "clothing" }' "https://smart-match-staging.herokuapp.com/submit_job"
+, "industry": 142 }' "https://smart-match-staging.herokuapp.com/submit_job"
 ```
 
 > The above command returns JSON structured like this:
@@ -140,12 +140,12 @@ Parameter | Description
 quality | Represents how important industry knowledge is to the match. Accepted values are (1, 2, 3) and must be passed as an integer. 1 indicates "low priority", 2 indicates "medium priority" and 3 indicates "high priority".
 price | Represents an approximation of the client's budget. Accepted values are (1, 2, 3) and must be passed as an integer. 1 indicates "value matches" are desired by the client, 2 indicates "standard matches" are desired by the client, 3 indicates the client wants to see "premium matches".
 speed | Accepted values are (-1, 0, 1) and must be passed as an integer. This is a proxy for urgency (-1 indicates "not urgent", 0 is "normal", and 1 is "very urgent"). This is being deprecated in favor of a proper date/time field which will be documented shortly.
-location | The ID of the location where the job will take place, a list of accepted locations and their ids can be found [here](https://www.talkbusinessanywhere.com/api/v1/locations) (JSON). For on the phone interpretations and translations please use id **1374**.
+location | The ID of the location where the job will take place, a list of accepted locations and their ids can be found [here](https://app.talkbusinessanywhere.com/api/v1/locations) (JSON). For on the phone interpretations and translations please use id **1374**.
 jobid | The ID of the job for internal use, any number accepted here.
 service_type | *"interpretation"* (e.g., phone calls or live meetings) or *"translation"* (e.g., documents)
-target_language | The ID of the language the target audience speak, a list of accepted languages and their ids can be found [here](https://www.talkbusinessanywhere.com/api/v1/languages) (JSON)
-source_language | The ID of the language the speaker uses, a list of accepted languages and their ids can be found [here](https://www.talkbusinessanywhere.com/api/v1/languages) (JSON)
-industry | The related industry of the job, in string and lower case. A list of accepted industries can be found [here](/javascripts/industries.json) (JSON)
+target_language | The ID of the language the target audience speak, a list of accepted languages and their ids can be found [here](https://app.talkbusinessanywhere.com/api/v1/languages) (JSON)
+source_language | The ID of the language the speaker uses, a list of accepted languages and their ids can be found [here](https://app.talkbusinessanywhere.com/api/v1/languages) (JSON)
+industry | The ID of the related industry the job to be validated belongs to. A list of accepted industries and their ids can be found [here](https://app.talkbusinessanywhere.com/api/v1/industries) (JSON)
 
 <aside class="success">
 Remember — a successful request is an authenticated one!
@@ -162,7 +162,7 @@ curl -X POST -H "Content-Type: application/json" -H "Authorization: meowmeowmeow
 , "service_type": "interpretation"
 , "target_language": 1
 , "source_language": 10
-, "industry": "clothing" }' "https://smart-match-staging.herokuapp.com/create_job"
+, "industry": 142 }' "https://smart-match-staging.herokuapp.com/create_job"
 ```
 
 > The above command returns JSON structured like this:
@@ -171,12 +171,12 @@ curl -X POST -H "Content-Type: application/json" -H "Authorization: meowmeowmeow
 {
   "job": {
     "id": 2,
-    "industry": "agriculture",
-    "language_pairs": {"language_to": "Mandarin", "language_from": "English"},
-    "location": "Shanghai",
-    "price": 120,
-    "start_date": "2016-09-27T12:00:00Z",
-    "title": "September 27 2016 English / Mandarin Interpreting (in-person) in Shanghai for Agriculture"
+    "industry": "Agriculture",
+    "language_pairs": {"language_from": "English", "language_to": "Mandarin"},
+    "location": "Beijing",
+    "price": 75,
+    "start_date": "2017-02-02",
+    "title": "February 02 2017 English / Mandarin Interpreting (in-person) in Beijing for Agriculture"
   },
   "status": "OK"
 }
@@ -199,12 +199,12 @@ Parameter | Description
 quality | Represents how important industry knowledge is to the match. Accepted values are (1, 2, 3) and must be passed as an integer. 1 indicates "low priority", 2 indicates "medium priority" and 3 indicates "high priority".
 price | Represents an approximation of the client's budget. Accepted values are (1, 2, 3) and must be passed as an integer. 1 indicates "value matches" are desired by the client, 2 indicates "standard matches" are desired by the client, 3 indicates the client wants to see "premium matches".
 speed | Accepted values are (-1, 0, 1) and must be passed as an integer. This is a proxy for urgency (-1 indicates "not urgent", 0 is "normal", and 1 is "very urgent"). This is being deprecated in favor of a proper date/time field which will be documented shortly.
-location | The ID of the location where the job will take place, a list of accepted locations and their ids can be found [here](https://www.talkbusinessanywhere.com/api/v1/locations) (JSON). For on the phone interpretations and translations please use id **1374**.
+location | The ID of the location where the job will take place, a list of accepted locations and their ids can be found [here](https://app.talkbusinessanywhere.com/api/v1/locations) (JSON). For on the phone interpretations and translations please use id **1374**.
 date | The date on which an interpretation job will happen or a translation job will be due. If no value was passed in, the date will be considered **"TBD"**
 service_type | *"interpretation"* (e.g., phone calls or live meetings) or *"translation"* (e.g., documents)
-target_language | The ID of the language the target audience speak, a list of accepted languages and their ids can be found [here](https://www.talkbusinessanywhere.com/api/v1/languages) (JSON)
-source_language | The ID of the language the speaker uses, a list of accepted languages and their ids can be found [here](https://www.talkbusinessanywhere.com/api/v1/languages) (JSON)
-industry | The related industry of the job, in string and lower case. A list of accepted industries can be found [here](/javascripts/industries.json) (JSON)
+target_language | The ID of the language the target audience speak, a list of accepted languages and their ids can be found [here](https://app.talkbusinessanywhere.com/api/v1/languages) (JSON)
+source_language | The ID of the language the speaker uses, a list of accepted languages and their ids can be found [here](https://app.talkbusinessanywhere.com/api/v1/languages) (JSON)
+industry | The ID of the related industry the job to be created belongs to. A list of accepted industries and their ids can be found [here](https://app.talkbusinessanywhere.com/api/v1/industries) (JSON)
 
 ### Response
 
