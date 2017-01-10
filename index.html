@@ -160,7 +160,7 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 , "service_type": "interpretation"
 , "target_language": 1
 , "source_language": 18
-, "industry": "clothing" }'</span> <span class="s2">"https://smart-match-staging.herokuapp.com/get_price"</span>
+, "industry": 142 }'</span> <span class="s2">"https://smart-match-staging.herokuapp.com/get_price"</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -205,7 +205,7 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 </tr>
 <tr>
 <td>location</td>
-<td>The ID of the location where the job will take place, a list of accepted locations and their ids can be found <a href="https://www.talkbusinessanywhere.com/api/v1/locations">here</a> (JSON). For on the phone interpretations and translations, please use id <strong>1374</strong>.</td>
+<td>The ID of the location where the job will take place, a list of accepted locations and their ids can be found <a href="https://app.talkbusinessanywhere.com/api/v1/locations">here</a> (JSON). For on the phone interpretations and translations, please use id <strong>1374</strong>.</td>
 </tr>
 <tr>
 <td>service_type</td>
@@ -213,15 +213,15 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 </tr>
 <tr>
 <td>target_language</td>
-<td>The ID of the language the target audience speak, a list of accepted languages and their ids can be found <a href="https://www.talkbusinessanywhere.com/api/v1/languages">here</a> (JSON)</td>
+<td>The ID of the language the target audience speak, a list of accepted languages and their ids can be found <a href="https://app.talkbusinessanywhere.com/api/v1/languages">here</a> (JSON)</td>
 </tr>
 <tr>
 <td>source_language</td>
-<td>The ID of the language the speaker uses, a list of accepted languages and their ids can be found <a href="https://www.talkbusinessanywhere.com/api/v1/languages">here</a> (JSON)</td>
+<td>The ID of the language the speaker uses, a list of accepted languages and their ids can be found <a href="https://app.talkbusinessanywhere.com/api/v1/languages">here</a> (JSON)</td>
 </tr>
 <tr>
 <td>industry</td>
-<td>The related industry of the job, in string and lower case. A list of accepted industries can be found <a href="javascripts/industries.json">here</a> (JSON)</td>
+<td>The ID of the related industry this job belongs to. A list of accepted industries and their ids can be found <a href="https://app.talkbusinessanywhere.com/api/v1/industries">here</a> (JSON)</td>
 </tr>
 </tbody></table>
 
@@ -256,7 +256,7 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 , "service_type": "interpretation"
 , "target_language": 1
 , "source_language": 10
-, "industry": "clothing" }'</span> <span class="s2">"https://smart-match-staging.herokuapp.com/submit_job"</span>
+, "industry": 142 }'</span> <span class="s2">"https://smart-match-staging.herokuapp.com/submit_job"</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -295,7 +295,7 @@ This endpoint verifies whether the parameters are valid for creating a new job. 
 </tr>
 <tr>
 <td>location</td>
-<td>The ID of the location where the job will take place, a list of accepted locations and their ids can be found <a href="https://www.talkbusinessanywhere.com/api/v1/locations">here</a> (JSON). For on the phone interpretations and translations please use id <strong>1374</strong>.</td>
+<td>The ID of the location where the job will take place, a list of accepted locations and their ids can be found <a href="https://app.talkbusinessanywhere.com/api/v1/locations">here</a> (JSON). For on the phone interpretations and translations please use id <strong>1374</strong>.</td>
 </tr>
 <tr>
 <td>jobid</td>
@@ -307,15 +307,15 @@ This endpoint verifies whether the parameters are valid for creating a new job. 
 </tr>
 <tr>
 <td>target_language</td>
-<td>The ID of the language the target audience speak, a list of accepted languages and their ids can be found <a href="https://www.talkbusinessanywhere.com/api/v1/languages">here</a> (JSON)</td>
+<td>The ID of the language the target audience speak, a list of accepted languages and their ids can be found <a href="https://app.talkbusinessanywhere.com/api/v1/languages">here</a> (JSON)</td>
 </tr>
 <tr>
 <td>source_language</td>
-<td>The ID of the language the speaker uses, a list of accepted languages and their ids can be found <a href="https://www.talkbusinessanywhere.com/api/v1/languages">here</a> (JSON)</td>
+<td>The ID of the language the speaker uses, a list of accepted languages and their ids can be found <a href="https://app.talkbusinessanywhere.com/api/v1/languages">here</a> (JSON)</td>
 </tr>
 <tr>
 <td>industry</td>
-<td>The related industry of the job, in string and lower case. A list of accepted industries can be found <a href="javascripts/industries.json">here</a> (JSON)</td>
+<td>The ID of the related industry the job to be validated belongs to. A list of accepted industries and their ids can be found <a href="https://app.talkbusinessanywhere.com/api/v1/industries">here</a> (JSON)</td>
 </tr>
 </tbody></table>
 
@@ -332,7 +332,7 @@ Remember — a successful request is an authenticated one!
 , "service_type": "interpretation"
 , "target_language": 1
 , "source_language": 10
-, "industry": "clothing" }'</span> <span class="s2">"https://smart-match-staging.herokuapp.com/create_job"</span>
+, "industry": 142 }'</span> <span class="s2">"https://smart-match-staging.herokuapp.com/create_job"</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -340,12 +340,12 @@ Remember — a successful request is an authenticated one!
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"job"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"industry"</span><span class="p">:</span><span class="w"> </span><span class="s2">"agriculture"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"language_pairs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"language_to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mandarin"</span><span class="p">,</span><span class="w"> </span><span class="nt">"language_from"</span><span class="p">:</span><span class="w"> </span><span class="s2">"English"</span><span class="p">},</span><span class="w">
-    </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Shanghai"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">120</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-09-27T12:00:00Z"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"September 27 2016 English / Mandarin Interpreting (in-person) in Shanghai for Agriculture"</span><span class="w">
+    </span><span class="nt">"industry"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Agriculture"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"language_pairs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"language_from"</span><span class="p">:</span><span class="w"> </span><span class="s2">"English"</span><span class="p">,</span><span class="w"> </span><span class="nt">"language_to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mandarin"</span><span class="p">},</span><span class="w">
+    </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Beijing"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"price"</span><span class="p">:</span><span class="w"> </span><span class="mi">75</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-02-02"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"February 02 2017 English / Mandarin Interpreting (in-person) in Beijing for Agriculture"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OK"</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -382,7 +382,7 @@ This endpoint is not yet available.
 </tr>
 <tr>
 <td>location</td>
-<td>The ID of the location where the job will take place, a list of accepted locations and their ids can be found <a href="https://www.talkbusinessanywhere.com/api/v1/locations">here</a> (JSON). For on the phone interpretations and translations please use id <strong>1374</strong>.</td>
+<td>The ID of the location where the job will take place, a list of accepted locations and their ids can be found <a href="https://app.talkbusinessanywhere.com/api/v1/locations">here</a> (JSON). For on the phone interpretations and translations please use id <strong>1374</strong>.</td>
 </tr>
 <tr>
 <td>date</td>
@@ -394,15 +394,15 @@ This endpoint is not yet available.
 </tr>
 <tr>
 <td>target_language</td>
-<td>The ID of the language the target audience speak, a list of accepted languages and their ids can be found <a href="https://www.talkbusinessanywhere.com/api/v1/languages">here</a> (JSON)</td>
+<td>The ID of the language the target audience speak, a list of accepted languages and their ids can be found <a href="https://app.talkbusinessanywhere.com/api/v1/languages">here</a> (JSON)</td>
 </tr>
 <tr>
 <td>source_language</td>
-<td>The ID of the language the speaker uses, a list of accepted languages and their ids can be found <a href="https://www.talkbusinessanywhere.com/api/v1/languages">here</a> (JSON)</td>
+<td>The ID of the language the speaker uses, a list of accepted languages and their ids can be found <a href="https://app.talkbusinessanywhere.com/api/v1/languages">here</a> (JSON)</td>
 </tr>
 <tr>
 <td>industry</td>
-<td>The related industry of the job, in string and lower case. A list of accepted industries can be found <a href="javascripts/industries.json">here</a> (JSON)</td>
+<td>The ID of the related industry the job to be created belongs to. A list of accepted industries and their ids can be found <a href="https://app.talkbusinessanywhere.com/api/v1/industries">here</a> (JSON)</td>
 </tr>
 </tbody></table>
 
