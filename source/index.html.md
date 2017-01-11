@@ -184,10 +184,6 @@ curl -X POST -H "Content-Type: application/json" -H "Authorization: meowmeowmeow
 
 This endpoint creates a new job with given location, target and source languages and industry on Cadence's platform.
 
-<aside class="alert">
-This endpoint is not yet available.
-</aside>
-
 ### HTTP Request
 
 `POST https://smart-match-staging.herokuapp.com/create_job`
