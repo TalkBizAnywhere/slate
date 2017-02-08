@@ -201,6 +201,7 @@ service_type | *"interpretation"* (e.g., phone calls or live meetings) or *"tran
 target_language | The ID of the language the target audience speak, a list of accepted languages and their ids can be found [here](https://app.talkbusinessanywhere.com/api/v1/languages) (JSON)
 source_language | The ID of the language the speaker uses, a list of accepted languages and their ids can be found [here](https://app.talkbusinessanywhere.com/api/v1/languages) (JSON)
 industry | The ID of the related industry the job to be created belongs to. A list of accepted industries and their ids can be found [here](https://app.talkbusinessanywhere.com/api/v1/industries) (JSON)
+description | Any additional information we need to know in order to serve you better.
 
 ### Response
 
