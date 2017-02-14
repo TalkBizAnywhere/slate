@@ -154,32 +154,31 @@ Remember — a successful request is an authenticated one!
 ## Create a new job
 
 ```shell
-curl -X POST -H "Content-Type: application/json" -H "Authorization: meowmeowmeow" -d '{"quality": 2
-, "price": 1
-, "speed": 2
-, "date" : "2016-12-21"
-, "location": 1
-, "description" : "This is a great job"
-, "service_type": "interpretation"
-, "target_language": 1
-, "source_language": 10
-, "industry": 142 }' "https://smart-match-staging.herokuapp.com/create_job"
+curl -X POST -H "Content-Type: application/json" '{"api_token": "meowmeowmeow"
+, "start_time": "2017-02-14T13:15:03Z"
+, "timezone": "Asia/Bangkok"
+, "languages" : "English, Thai"
+, "duration": 1
+, "notes" : "This is a great job"}' "https://smart-match-staging.herokuapp.com/create_job"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "job": {
-    "id": 2,
-    "industry": "Agriculture",
-    "language_pairs": {"language_from": "English", "language_to": "Mandarin"},
-    "location": "Beijing",
-    "price": 75,
-    "start_date": "2017-02-02",
-    "title": "February 02 2017 English / Mandarin Interpreting (in-person) in Beijing for Agriculture"
-  },
-  "status": "OK"
+    "status": "success",
+    "response": {
+        "job_id": "1486939273049x736883949009633300",
+        "job_start_date": "Friday, February 17, 2017 11:15 am",
+        "job_timezone": "Lisbon",
+        "job_duration": "10 to 60 minutes",
+        "job_pin": 864226,
+        "job_languages": "English, Malaysian",
+        "job_active": true,
+        "user_id": "1487026541060x869803193258121600",
+        "token": "1487107217282x999870081432163800",
+        "expires": 31536000
+    }
 }
 ```
 
@@ -193,20 +192,28 @@ This endpoint creates a new job with given location, target and source languages
 
 Parameter | Description
 --------- | -----------
-quality | Represents how important industry knowledge is to the match. Accepted values are (1, 2, 3) and must be passed as an integer. 1 indicates "low priority", 2 indicates "medium priority" and 3 indicates "high priority".
-price | Represents an approximation of the client's budget. Accepted values are (1, 2, 3) and must be passed as an integer. 1 indicates "value matches" are desired by the client, 2 indicates "standard matches" are desired by the client, 3 indicates the client wants to see "premium matches".
-speed | Accepted values are (-1, 0, 1) and must be passed as an integer. This is a proxy for urgency (-1 indicates "not urgent", 0 is "normal", and 1 is "very urgent"). This is being deprecated in favor of a proper date/time field which will be documented shortly.
-location | The ID of the location where the job will take place, a list of accepted locations and their ids can be found [here](https://app.talkbusinessanywhere.com/api/v1/locations) (JSON). For on the phone interpretations and translations please use id **1374**.
-date | The date on which an interpretation job will happen or a translation job will be due. If no value was passed in, the date will be considered **"TBD"**
-service_type | *"interpretation"* (e.g., phone calls or live meetings) or *"translation"* (e.g., documents)
-target_language | The ID of the language the target audience speak, a list of accepted languages and their ids can be found [here](https://app.talkbusinessanywhere.com/api/v1/languages) (JSON)
-source_language | The ID of the language the speaker uses, a list of accepted languages and their ids can be found [here](https://app.talkbusinessanywhere.com/api/v1/languages) (JSON)
-industry | The ID of the related industry the job to be created belongs to. A list of accepted industries and their ids can be found [here](https://app.talkbusinessanywhere.com/api/v1/industries) (JSON)
-description | Any additional information we need to know in order to serve you better.
+api_token | Pre-assigned API token for authentication.
+start_time | The date and time at which the call will happen, expected in format YYYY-MM-DDTHH:mm:ssZ. Note the Z value does not have to be the timezone in which the local time is as long as the timezone field is specified.
+timezone | The local timezone in which the call will happen.
+languages | A list of languages will be used in the call, e.g. "English, Mandarin"
+duration | Duration of the call
+notes    | Any additional information we need to know in order to serve you better.
 
 ### Response
 
 Property | Description
 --------- | -----------
-job | JSON object of the created job, with auto-generated **title** property contains date, language and location information.
+response | JSON object of the response, with fields listed below.
 status | Indicating request success or failure.
+
+#### Fields of response object
+
+Property | Description
+--------- | -----------
+job_id | The unique id of the created job.
+job_start_time | The date and time at which the call will happen.
+job_timezone | The local timezone in which the call will happen.
+job_duration | How long would the call take.
+job_pin | A PIN for dial-in numbers.
+job_languages | Languages will be used in the call.
+job_active | Boolean value indicates whether the call is cancelled.
