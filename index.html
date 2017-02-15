@@ -327,7 +327,7 @@ Remember — a successful request is an authenticated one!
 <pre class="highlight shell"><code>curl -X POST -H <span class="s2">"Content-Type: application/json"</span> <span class="s1">'{"api_token": "meowmeowmeow"
 , "start_time": "2017-02-14T13:15:03Z"
 , "timezone": "Asia/Bangkok"
-, "languages" : "English, Thai"
+, "languages" : [1,20]
 , "duration": 1
 , "notes" : "This is a great job"}'</span> <span class="s2">"https://smart-match-staging.herokuapp.com/create_job"</span>
 </code></pre>
@@ -338,8 +338,8 @@ Remember — a successful request is an authenticated one!
     </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"response"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"job_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1486939273049x736883949009633300"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"job_start_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Friday, February 17, 2017 11:15 am"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"job_timezone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lisbon"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"job_start_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Friday, February 17, 2017 11:15 am"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"job_timezone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Europe/Lisbon"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"job_duration"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10 to 60 minutes"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"job_pin"</span><span class="p">:</span><span class="w"> </span><span class="mi">864226</span><span class="p">,</span><span class="w">
         </span><span class="nt">"job_languages"</span><span class="p">:</span><span class="w"> </span><span class="s2">"English, Malaysian"</span><span class="p">,</span><span class="w">
@@ -374,15 +374,15 @@ Remember — a successful request is an authenticated one!
 </tr>
 <tr>
 <td>timezone</td>
-<td>The local timezone in which the call will happen.</td>
+<td>A string containing the &ldquo;tz&rdquo; ID of the local timezone in which the call will happen, such as &ldquo;America/Los_Angeles&rdquo; or &ldquo;Asia/Shanghai&rdquo;, as defined in IANA Time Zone Database and a list of available values can be found on <a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones">Wikipedia</a>.</td>
 </tr>
 <tr>
 <td>languages</td>
-<td>A list of languages will be used in the call, e.g. &ldquo;English, Mandarin&rdquo;</td>
+<td>A list of language IDs will be used in the call, e.g. [1,2,6] stands for English, Mandarin and French. Accepted languages and their ids can be found <a href="https://app.talkbusinessanywhere.com/api/v1/languages">here</a> (JSON)</td>
 </tr>
 <tr>
 <td>duration</td>
-<td>Duration of the call</td>
+<td>Duration of the call, accepted values are (1, 2, 3) and must be passed as an integer. 1 indicates &ldquo;0 to 10 minutes&rdquo;, 2 indicates “10 to 60 minutes” and 3 indicates “60 to 180 minutes”.</td>
 </tr>
 <tr>
 <td>notes</td>
