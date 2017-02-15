@@ -182,7 +182,7 @@ curl -X POST -H "Content-Type: application/json" '{"api_token": "meowmeowmeow"
 }
 ```
 
-This endpoint creates a new job with given location, target and source languages and industry on Cadence's platform.
+This endpoint creates a new call with given start time, timezone and languages on Cadence's platform.
 
 ### HTTP Request
 
@@ -196,7 +196,7 @@ api_token | Pre-assigned API token for authentication.
 start_time | The date and time at which the call will happen, expected in format YYYY-MM-DDTHH:mm:ssZ. Note the Z value does not have to be the timezone in which the local time is as long as the timezone field is specified.
 timezone | A string containing the "tz" ID of the local timezone in which the call will happen, such as "America/Los_Angeles" or "Asia/Shanghai", as defined in IANA Time Zone Database and a list of available values can be found on [Wikipedia](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
 languages | A list of language IDs will be used in the call, e.g. [1,2,6] stands for English, Mandarin and French. Accepted languages and their ids can be found [here](https://app.talkbusinessanywhere.com/api/v1/languages) (JSON)
-duration | Duration of the call, accepted values are (1, 2, 3) and must be passed as an integer. 1 indicates "0 to 10 minutes", 2 indicates “10 to 60 minutes” and 3 indicates “60 to 180 minutes”.
+duration | Duration of the call, accepted values are (0, 1, 2) and must be passed as an integer. 0 indicates "0 to 10 minutes", 1 indicates “10 to 60 minutes” and 2 indicates “60 to 180 minutes”.
 notes    | Any additional information we need to know in order to serve you better.
 
 ### Response
