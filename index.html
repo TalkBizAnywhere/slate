@@ -150,7 +150,7 @@ curl <span class="s2">"api_endpoint_here"</span>
 You must replace <code>meowmeowmeow</code> with your personal API key.
 </aside>
 
-<h1 id="jobs-api">Jobs API</h1>
+<h1 id="call-booking-api">Call Booking API</h1>
 
 <h2 id="get-a-quote-for-a-job">Get a quote for a job</h2>
 <pre class="highlight shell"><code>curl -X POST -H <span class="s2">"Content-Type: application/json"</span> -H <span class="s2">"Authorization: meowmeowmeow"</span> -d <span class="s1">'{"quality": 2
@@ -323,8 +323,8 @@ This endpoint verifies whether the parameters are valid for creating a new job. 
 Remember — a successful request is an authenticated one!
 </aside>
 
-<h2 id="create-a-new-job">Create a new job</h2>
-<pre class="highlight shell"><code>curl -X POST -H <span class="s2">"Content-Type: application/json"</span> <span class="s1">'{"api_token": "meowmeowmeow"
+<h2 id="book-a-new-call">Book a new call</h2>
+<pre class="highlight shell"><code>curl -X POST -H <span class="s2">"Content-Type: application/json"</span> -H <span class="s2">"Authorization: meowmeowmeow"</span> <span class="s1">'{"api_token": "meowmeowmeow"
 , "start_time": "2017-02-14T13:15:03Z"
 , "timezone": "Asia/Bangkok"
 , "languages" : [1,20]
@@ -344,9 +344,7 @@ Remember — a successful request is an authenticated one!
         </span><span class="nt">"job_pin"</span><span class="p">:</span><span class="w"> </span><span class="mi">864226</span><span class="p">,</span><span class="w">
         </span><span class="nt">"job_languages"</span><span class="p">:</span><span class="w"> </span><span class="s2">"English, Malaysian"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"job_active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1487026541060x869803193258121600"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1487107217282x999870081432163800"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"expires"</span><span class="p">:</span><span class="w"> </span><span class="mi">31536000</span><span class="w">
+        </span><span class="nt">"user_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1487026541060x869803193258121600"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
