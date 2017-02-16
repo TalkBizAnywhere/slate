@@ -46,7 +46,7 @@ The API key is expected to be included in all API requests to the server in a he
 You must replace <code>meowmeowmeow</code> with your personal API key.
 </aside>
 
-# Jobs API
+# Call Booking API
 
 ## Get a quote for a job
 
@@ -151,10 +151,10 @@ industry | The ID of the related industry the job to be validated belongs to. A 
 Remember — a successful request is an authenticated one!
 </aside>
 
-## Create a new job
+## Book a new call
 
 ```shell
-curl -X POST -H "Content-Type: application/json" '{"api_token": "meowmeowmeow"
+curl -X POST -H "Content-Type: application/json" -H "Authorization: meowmeowmeow" '{"api_token": "meowmeowmeow"
 , "start_time": "2017-02-14T13:15:03Z"
 , "timezone": "Asia/Bangkok"
 , "languages" : [1,20]
@@ -175,9 +175,7 @@ curl -X POST -H "Content-Type: application/json" '{"api_token": "meowmeowmeow"
         "job_pin": 864226,
         "job_languages": "English, Malaysian",
         "job_active": true,
-        "user_id": "1487026541060x869803193258121600",
-        "token": "1487107217282x999870081432163800",
-        "expires": 31536000
+        "user_id": "1487026541060x869803193258121600"
     }
 }
 ```
