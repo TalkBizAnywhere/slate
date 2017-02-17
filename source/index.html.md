@@ -158,7 +158,6 @@ curl -X POST -H "Content-Type: application/json" -H "Authorization: meowmeowmeow
 , "start_time": "2017-02-14T13:15:03Z"
 , "timezone": "Asia/Bangkok"
 , "languages" : [1,20]
-, "duration": 1
 , "notes" : "This is a great job"}' "https://cadence2.bubbleapps.io/api/1.1/wf/create_job"
 ```
 
@@ -194,7 +193,6 @@ api_token | Pre-assigned API token for authentication.
 start_time | The date and time at which the call will happen, expected in format YYYY-MM-DDTHH:mm:ssZ. Note the Z value does not have to be the timezone in which the local time is as long as the timezone field is specified.
 timezone | A string containing the "tz" ID of the local timezone in which the call will happen, such as "America/Los_Angeles" or "Asia/Shanghai", as defined in IANA Time Zone Database and a list of available values can be found on [Wikipedia](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones).
 languages | A list of language IDs will be used in the call, e.g. [1,2,6] stands for English, Mandarin and French. Accepted languages and their ids can be found [here](https://cadence2.bubbleapps.io/api/1.1/obj/language) (JSON)
-duration | Duration of the call, accepted values are (0, 1, 2) and must be passed as an integer. 0 indicates "0 to 10 minutes", 1 indicates “10 to 60 minutes” and 2 indicates “60 to 180 minutes”.
 notes    | Any additional information we need to know in order to serve you better.
 
 ### Response
