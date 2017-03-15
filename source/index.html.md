@@ -31,7 +31,7 @@ All methods must be called using HTTPS. Arguments can be passed as POST, with qu
 ```shell
 # With shell, you can just pass the correct header with each request
 curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+  -H "Authorization: Bearer meowmeowmeow"
 ```
 
 > Make sure to replace `meowmeowmeow` with your API key.
@@ -40,7 +40,7 @@ API keys are used to authenticate users of our API. You can [contact us](mailto:
 
 The API key is expected to be included in all API requests to the server in a header that looks like the following:
 
-`Authorization: meowmeowmeow`
+`Authorization: Bearer meowmeowmeow`
 
 <aside class="notice">
 You must replace <code>meowmeowmeow</code> with your personal API key.
@@ -158,7 +158,7 @@ curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer meowm
 , "start_time": "2017-02-14T13:15:03Z"
 , "timezone": "Asia/Bangkok"
 , "languages" : [1,20]
-, "notes" : "This is a great job"}' "https://cadence2.bubbleapps.io/api/1.1/wf/create_job"
+, "notes" : "This is a great job"}' "https://cadence2.bubbleapps.io/version-test/api/1.1/wf/create_job"
 ```
 
 > The above command returns JSON structured like this:
