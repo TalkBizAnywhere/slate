@@ -154,7 +154,7 @@ Remember — a successful request is an authenticated one!
 ## Book a new call
 
 ```shell
-curl -X POST -H "Content-Type: application/json" -H "Authorization: meowmeowmeow" '{"api_token": "meowmeowmeow"
+curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer meowmeowmeow" '{"api_token": "meowmeowmeow"
 , "start_time": "2017-02-14T13:15:03Z"
 , "timezone": "Asia/Bangkok"
 , "languages" : [1,20]
@@ -171,7 +171,6 @@ curl -X POST -H "Content-Type: application/json" -H "Authorization: meowmeowmeow
         "job_start_time": "Friday, February 17, 2017 11:15 am",
         "job_timezone": "Europe/Lisbon",
         "job_duration": "10 to 60 minutes",
-        "job_pin": 864226,
         "job_languages": "English, Malaysian",
         "job_active": true,
         "user_id": "1487026541060x869803193258121600"
@@ -183,7 +182,7 @@ This endpoint creates a new call with given start time, timezone and languages o
 
 ### HTTP Request
 
-`POST https://cadence2.bubbleapps.io/api/1.1/wf/create_job`
+`POST https://cadence2.bubbleapps.io/version-test/api/1.1/wf/create_job`
 
 ### URL Parameters
 
@@ -210,6 +209,4 @@ job_id | The unique id of the created job.
 job_start_time | The date and time at which the call will happen.
 job_timezone | The local timezone in which the call will happen.
 job_duration | How long would the call take.
-job_pin | A PIN for dial-in numbers.
 job_languages | Languages will be used in the call.
-job_active | Boolean value indicates whether the call is cancelled.
