@@ -134,7 +134,7 @@
 </blockquote>
 <pre class="highlight shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
 curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
+  -H <span class="s2">"Authorization: Bearer meowmeowmeow"</span>
 </code></pre>
 <blockquote>
 <p>Make sure to replace <code class="prettyprint">meowmeowmeow</code> with your API key.</p>
@@ -144,7 +144,7 @@ curl <span class="s2">"api_endpoint_here"</span>
 
 <p>The API key is expected to be included in all API requests to the server in a header that looks like the following:</p>
 
-<p><code class="prettyprint">Authorization: meowmeowmeow</code></p>
+<p><code class="prettyprint">Authorization: Bearer meowmeowmeow</code></p>
 
 <aside class="notice">
 You must replace <code>meowmeowmeow</code> with your personal API key.
@@ -328,7 +328,7 @@ Remember — a successful request is an authenticated one!
 , "start_time": "2017-02-14T13:15:03Z"
 , "timezone": "Asia/Bangkok"
 , "languages" : [1,20]
-, "notes" : "This is a great job"}'</span> <span class="s2">"https://cadence2.bubbleapps.io/api/1.1/wf/create_job"</span>
+, "notes" : "This is a great job"}'</span> <span class="s2">"https://cadence2.bubbleapps.io/version-test/api/1.1/wf/create_job"</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
