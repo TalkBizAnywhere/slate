@@ -1,9 +1,9 @@
 
-# Basics
+# Call Booking API
 
 All methods must be called using HTTPS. Arguments can be passed as POST, with query params placed in the body of the JSON payload. The response contains a JSON object, which contains a top-level property status, indicating success or failure.
 
-# Authentication
+## Authentication
 
 > To authorize, use this code:
 
@@ -25,9 +25,8 @@ The API key is expected to be included in all API requests to the server in a he
 You must replace <code>meowmeowmeow</code> with your personal API key.
 </aside>
 
-# Call Booking API
 
-## Book a new call
+### Book a new call
 
 ```shell
 curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer meowmeowmeow" '{"api_token": "meowmeowmeow"
@@ -89,7 +88,7 @@ job_languages | Languages will be used in the call.
 
 
 
-# Errors
+## Errors
 
 The Smart-match API uses the following error codes:
 
