@@ -25,7 +25,7 @@ Parameter | Description
 <nobr> `callback_url` </nobr>  | Callback URL for the asynchronous response  *(as in [Twilio's documentation](https://www.twilio.com/docs/api/add-ons/publish) )*
 <nobr> `audio_data` </nobr>  | Audio file binary bytestream *(as in [Twilio's documentation](https://www.twilio.com/docs/api/add-ons/publish) )*
 <nobr> `requested_service` </nobr>  | Requested Service. Should be one of the following: [<nobr>`transcription`,</nobr> <nobr>`translation`]</nobr>
-<nobr> `source_languages` </nobr> | Languages in the audio file provided by the client. Should contain a language code, or a comma separated list of language codes. E.g. `en`, `cn`, or `en,de,cn`.
+<nobr> `source_languages` </nobr> | Languages in the audio file provided by the client. Should contain a language code, or a list of language codes. E.g. `en`, `cn`, or `['en', 'de', 'cn']`.
 <nobr> `target_language` </nobr> | Desired target language, either for the transcription or the voice-over translation. Should contain **a single language code**.
 
 
@@ -77,7 +77,7 @@ headers = {'X-Twilio-VendorAccountSid': 'AC05b3911315a1322d1dede66eed740000',
            'X-Twilio-AddOnConfigurationSid': 'XEbee2b4cf26384f0b88ad98a25530c338',
             }
 
-data = {'source_languages': 'en,de',
+data = {'source_languages': ['en','de'],
         'target_language': 'cn',
         'request_sid': 'MR000009775bb6d43d1cabc4955723fae1',
         'requested_service': 'transcription',
@@ -111,7 +111,8 @@ curl  -X POST \
  --header 'X-Twilio-AddOnVersionSid:XC2ad3d7d6478a2ca72f224d817a241586' \
  --header 'X-Twilio-AddOnInstallSid:XDe2767c53b3d7be099a825252c6cf4e59' \
  --header 'X-Twilio-AddOnConfigurationSid:XEbee2b4cf26384f0b88ad98a25530c338' \
- --form source_languages="en,de" \
+ --form source_languages="en" \
+ --form source_languages="de" \
  --form target_language=cn \
  --form request_sid=MR000009775bb6d43d1cabc4955723fae1 \
  --form requested_service=transcription \
