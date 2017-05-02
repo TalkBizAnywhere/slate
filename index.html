@@ -447,7 +447,7 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 </tr>
 <tr>
 <td><nobr> <code class="prettyprint">source_languages</code> </nobr></td>
-<td>Languages in the audio file provided by the client. Should contain a language code, or a comma separated list of language codes. E.g. <code class="prettyprint">en</code>, <code class="prettyprint">cn</code>, or <code class="prettyprint">en,de,cn</code>.</td>
+<td>Languages in the audio file provided by the client. Should contain a language code, or a list of language codes. E.g. <code class="prettyprint">en</code>, <code class="prettyprint">cn</code>, or <code class="prettyprint">[&#39;en&#39;, &#39;de&#39;, &#39;cn&#39;]</code>.</td>
 </tr>
 <tr>
 <td><nobr> <code class="prettyprint">target_language</code> </nobr></td>
@@ -514,7 +514,7 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
            <span class="s">'X-Twilio-AddOnConfigurationSid'</span><span class="p">:</span> <span class="s">'XEbee2b4cf26384f0b88ad98a25530c338'</span><span class="p">,</span>
             <span class="p">}</span>
 
-<span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s">'source_languages'</span><span class="p">:</span> <span class="s">'en,de'</span><span class="p">,</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s">'source_languages'</span><span class="p">:</span> <span class="p">[</span><span class="s">'en'</span><span class="p">,</span><span class="s">'de'</span><span class="p">],</span>
         <span class="s">'target_language'</span><span class="p">:</span> <span class="s">'cn'</span><span class="p">,</span>
         <span class="s">'request_sid'</span><span class="p">:</span> <span class="s">'MR000009775bb6d43d1cabc4955723fae1'</span><span class="p">,</span>
         <span class="s">'requested_service'</span><span class="p">:</span> <span class="s">'transcription'</span><span class="p">,</span>
@@ -545,7 +545,8 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
  --header <span class="s1">'X-Twilio-AddOnVersionSid:XC2ad3d7d6478a2ca72f224d817a241586'</span> <span class="se">\</span>
  --header <span class="s1">'X-Twilio-AddOnInstallSid:XDe2767c53b3d7be099a825252c6cf4e59'</span> <span class="se">\</span>
  --header <span class="s1">'X-Twilio-AddOnConfigurationSid:XEbee2b4cf26384f0b88ad98a25530c338'</span> <span class="se">\</span>
- --form <span class="nv">source_languages</span><span class="o">=</span><span class="s2">"en,de"</span> <span class="se">\</span>
+ --form <span class="nv">source_languages</span><span class="o">=</span><span class="s2">"en"</span> <span class="se">\</span>
+ --form <span class="nv">source_languages</span><span class="o">=</span><span class="s2">"de"</span> <span class="se">\</span>
  --form <span class="nv">target_language</span><span class="o">=</span>cn <span class="se">\</span>
  --form <span class="nv">request_sid</span><span class="o">=</span>MR000009775bb6d43d1cabc4955723fae1 <span class="se">\</span>
  --form <span class="nv">requested_service</span><span class="o">=</span>transcription <span class="se">\</span>
