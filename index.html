@@ -415,7 +415,7 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 
 <h2 id="installation-and-configuration">Installation and Configuration</h2>
 
-<p>There is no installation needed. The API only accepts requests via HTTP POST on the URL </p>
+<p>There is no installation needed. The API only accepts requests via HTTP POST to the URL </p>
 
 <p><code class="prettyprint">https://cadencetranscription.herokuapp.com/api</code></p>
 
@@ -435,7 +435,7 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 </tr>
 <tr>
 <td><nobr> <code class="prettyprint">callback_url</code> </nobr></td>
-<td>Callback url for the asynchronous response  <em>(as in <a href="https://www.twilio.com/docs/api/add-ons/publish">Twilio&rsquo;s documentation</a> )</em></td>
+<td>Callback URL for the asynchronous response  <em>(as in <a href="https://www.twilio.com/docs/api/add-ons/publish">Twilio&rsquo;s documentation</a> )</em></td>
 </tr>
 <tr>
 <td><nobr> <code class="prettyprint">audio_data</code> </nobr></td>
@@ -451,7 +451,7 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 </tr>
 <tr>
 <td><nobr> <code class="prettyprint">target_language</code> </nobr></td>
-<td><em>(optional)</em> The desired output language, either for the transcription or the dubbed file. Should contain <strong>a single language code</strong>.</td>
+<td>Desired target language, either for the transcription or the voice-over translation. Should contain <strong>a single language code</strong>.</td>
 </tr>
 </tbody></table>
 
@@ -514,8 +514,9 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
            <span class="s">'X-Twilio-AddOnConfigurationSid'</span><span class="p">:</span> <span class="s">'XEbee2b4cf26384f0b88ad98a25530c338'</span><span class="p">,</span>
             <span class="p">}</span>
 
-<span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s">'source_language'</span><span class="p">:</span> <span class="s">'en'</span><span class="p">,</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s">'source_languages'</span><span class="p">:</span> <span class="s">'en'</span><span class="p">,</span>
         <span class="s">'target_language'</span><span class="p">:</span> <span class="s">'cn'</span><span class="p">,</span>
+        <span class="s">'request_sid'</span><span class="p">:</span> <span class="s">'MR000009775bb6d43d1cabc4955723fae1'</span><span class="p">,</span>
         <span class="s">'requested_service'</span><span class="p">:</span> <span class="s">'transcription'</span><span class="p">,</span>
         <span class="s">'callback_url'</span><span class="p">:</span> <span class="s">'http://httpbin.org/post'</span><span class="p">,</span>
         <span class="s">'channels'</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
@@ -525,10 +526,8 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
         <span class="s">'size'</span><span class="p">:</span> <span class="mi">1204</span><span class="p">,</span> <span class="c"># in bytes</span>
         <span class="p">}</span>
 
-<span class="c"># Replace authentication</span>
 <span class="n">auth</span> <span class="o">=</span> <span class="p">(</span><span class="s">'cadence'</span><span class="p">,</span> <span class="s">'friend'</span><span class="p">)</span>
 
-<span class="c"># Replace Audio File</span>
 <span class="n">audio_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">'file.wav'</span><span class="p">,</span> <span class="s">'rb'</span><span class="p">)</span>
 <span class="n">files</span> <span class="o">=</span> <span class="p">{</span><span class="s">'audio_data'</span><span class="p">:</span> <span class="n">audio_file</span><span class="p">}</span>
 
@@ -542,20 +541,18 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 <pre class="highlight python tab-python"><code>
 <span class="kn">import</span> <span class="nn">requests</span>
 
-<span class="n">callback_url</span> <span class="o">=</span> <span class="p">[</span><span class="o">...</span><span class="p">]</span>
+<span class="n">callback_url</span> <span class="o">=</span> <span class="s">'http://httpbin.org/post'</span>
 
-<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'user-agent'</span><span class="p">:</span> <span class="s">'cadencetranslate/v/0.1'</span><span class="p">}</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'user-agent'</span><span class="p">:</span> <span class="s">'cadencetranscription/v/0.1'</span><span class="p">}</span>
 
 <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s">'X-Twilio-RequestSid'</span><span class="p">:</span> <span class="s">'MR000009775bb6d43d1cabc4955723fae1'</span><span class="p">,</span>
+    <span class="s">'request_sid'</span><span class="p">:</span> <span class="s">'MR000009775bb6d43d1cabc4955723fae1'</span><span class="p">,</span>
     <span class="s">'status'</span><span class="p">:</span> <span class="s">'ok'</span><span class="p">,</span>
     <span class="s">'message'</span><span class="p">:</span> <span class="s">''</span><span class="p">,</span>
 <span class="p">}</span>
 
-<span class="c"># Replace authentication</span>
 <span class="n">auth</span> <span class="o">=</span> <span class="p">(</span><span class="s">'cadence'</span><span class="p">,</span> <span class="s">'friend'</span><span class="p">)</span>
 
-<span class="c"># Replace Audio File</span>
 <span class="n">audio_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">'file.wav'</span><span class="p">,</span> <span class="s">'rb'</span><span class="p">)</span>
 <span class="n">transcription_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">'transcription.pdf'</span><span class="p">,</span> <span class="s">'rb'</span><span class="p">)</span>
 
