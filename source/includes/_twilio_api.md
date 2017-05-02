@@ -66,7 +66,7 @@ Our request uses **HTTP basic auth** with a username and password you provide.
 
 import requests
 
-url = "https://twilioapi.herokuapp.com/api"
+url = "https://cadencetranscription.herokuapp.com/api"
 
 headers = {'X-Twilio-VendorAccountSid': 'AC05b3911315a1322d1dede66eed740000',
            'X-Twilio-Signature': '0FqS203W44/lM2UEM+51hRzwat4=',
@@ -77,7 +77,7 @@ headers = {'X-Twilio-VendorAccountSid': 'AC05b3911315a1322d1dede66eed740000',
            'X-Twilio-AddOnConfigurationSid': 'XEbee2b4cf26384f0b88ad98a25530c338',
             }
 
-data = {'source_languages': 'en',
+data = {'source_languages': 'en,de',
         'target_language': 'cn',
         'request_sid': 'MR000009775bb6d43d1cabc4955723fae1',
         'requested_service': 'transcription',
@@ -101,6 +101,29 @@ assert not r.content
 
 ```
 
+```shell 
+curl  -X POST \
+ -u cadence:friend \
+ --header 'X-Twilio-VendorAccountSid:AC05b3911315a1322d1dede66eed740000' \
+ --header 'X-Twilio-Signature:0FqS203W44/lM2UEM+51hRzwat4=' \
+ --header 'X-Twilio-RequestSid:MR000009775bb6d43d1cabc4955723fae1' \
+ --header 'X-Twilio-AddOnSid:XBc6dc06ce91d566fae284bc2bf36218a4' \
+ --header 'X-Twilio-AddOnVersionSid:XC2ad3d7d6478a2ca72f224d817a241586' \
+ --header 'X-Twilio-AddOnInstallSid:XDe2767c53b3d7be099a825252c6cf4e59' \
+ --header 'X-Twilio-AddOnConfigurationSid:XEbee2b4cf26384f0b88ad98a25530c338' \
+ --form source_languages="en,de" \
+ --form target_language=cn \
+ --form request_sid=MR000009775bb6d43d1cabc4955723fae1 \
+ --form requested_service=transcription \
+ --form callback_url="http://httpbin.org/post" \
+ --form channels=2 \
+ --form duration=6000 \
+ --form format="audio/x-wav" \
+ --form media_sid="WcS42767c53b3d7be099a825252c6c123e59" \
+ --form size=1204 \
+ --form "audio_data=@file.wav" \
+ https://cadencetranscription.herokuapp.com/api
+ ```
 
 
 ## Complete Sample Response
@@ -131,4 +154,14 @@ files = {'transcription': transcription_file,
 r = requests.post(url, auth=auth, files=files, data=data, headers=headers)
 ```
 
-
+```shell
+curl  -X POST \
+ -u cadence:friend \
+ --header 'user-agent:cadencetranscription/v/0.1' \
+ --form status=ok \
+ --form message="" \
+ --form request_sid=MR000009775bb6d43d1cabc4955723fae1 \
+ --form "transcription=@transcription.pdf" \
+ --form "translation=@file.wav" \
+ http://httpbin.org/post
+ ```
