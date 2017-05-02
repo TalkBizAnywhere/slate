@@ -8,7 +8,7 @@ Cadence Translate provides high-accuracy transcription and voice-over translatio
 
 ## Installation and Configuration
 
-There is no installation needed. The API only accepts requests via HTTP POST on the URL 
+There is no installation needed. The API only accepts requests via HTTP POST to the URL 
 
 `https://cadencetranscription.herokuapp.com/api`
 
@@ -22,11 +22,11 @@ The API requires the following parameters on any request:
 Parameter | Description
 ------------------------------- | ------
 <nobr> `request_sid` </nobr>  | Unique identifier for this request  *(as in [Twilio's documentation](https://www.twilio.com/docs/api/add-ons/publish) )*
-<nobr> `callback_url` </nobr>  | Callback url for the asynchronous response  *(as in [Twilio's documentation](https://www.twilio.com/docs/api/add-ons/publish) )*
+<nobr> `callback_url` </nobr>  | Callback URL for the asynchronous response  *(as in [Twilio's documentation](https://www.twilio.com/docs/api/add-ons/publish) )*
 <nobr> `audio_data` </nobr>  | Audio file binary bytestream *(as in [Twilio's documentation](https://www.twilio.com/docs/api/add-ons/publish) )*
 <nobr> `requested_service` </nobr>  | Requested Service. Should be one of the following: [<nobr>`transcription`,</nobr> <nobr>`translation`]</nobr>
 <nobr> `source_languages` </nobr> | Languages in the audio file provided by the client. Should contain a language code, or a comma separated list of language codes. E.g. `en`, `cn`, or `en,de,cn`.
-<nobr> `target_language` </nobr> | *(optional)* The desired output language, either for the transcription or the dubbed file. Should contain **a single language code**.
+<nobr> `target_language` </nobr> | Desired target language, either for the transcription or the voice-over translation. Should contain **a single language code**.
 
 
 
@@ -77,8 +77,9 @@ headers = {'X-Twilio-VendorAccountSid': 'AC05b3911315a1322d1dede66eed740000',
            'X-Twilio-AddOnConfigurationSid': 'XEbee2b4cf26384f0b88ad98a25530c338',
             }
 
-data = {'source_language': 'en',
+data = {'source_languages': 'en',
         'target_language': 'cn',
+        'request_sid': 'MR000009775bb6d43d1cabc4955723fae1',
         'requested_service': 'transcription',
         'callback_url': 'http://httpbin.org/post',
         'channels': 2,
@@ -88,10 +89,8 @@ data = {'source_language': 'en',
         'size': 1204, # in bytes
         }
 
-# Replace authentication
 auth = ('cadence', 'friend')
 
-# Replace Audio File
 audio_file = open('file.wav', 'rb')
 files = {'audio_data': audio_file}
 
@@ -111,20 +110,18 @@ assert not r.content
 
 import requests
 
-callback_url = [...]
+callback_url = 'http://httpbin.org/post'
 
-headers = {'user-agent': 'cadencetranslate/v/0.1'}
+headers = {'user-agent': 'cadencetranscription/v/0.1'}
 
 data = {
-    'X-Twilio-RequestSid': 'MR000009775bb6d43d1cabc4955723fae1',
+    'request_sid': 'MR000009775bb6d43d1cabc4955723fae1',
     'status': 'ok',
     'message': '',
 }
 
-# Replace authentication
 auth = ('cadence', 'friend')
 
-# Replace Audio File
 audio_file = open('file.wav', 'rb')
 transcription_file = open('transcription.pdf', 'rb')
 
