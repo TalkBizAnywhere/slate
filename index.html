@@ -411,117 +411,95 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 
           <h1 id="twilio-api">Twilio API</h1>
 
-<p>The purpose of this API is to allow Cadence Translate to work with Twilio, to provide transcription and dubbing services. Using a combination of manual and or machine supported translation and transcription, we can produce a high-quality result.</p>
+<p>Cadence Translate provides high-accuracy transcription and voice-over translation services for Twilio, and its partners.</p>
 
-<h2 id="inital-request">Inital Request</h2>
+<h2 id="installation-and-configuration">Installation and Configuration</h2>
 
-<p>All requests made to this API should be made via HTTP POST to the URL </p>
+<p>There is no installation needed. The API only accepts requests via HTTP POST on the URL </p>
 
-<p><code class="prettyprint">https://twillioapi.herokuapp.com/api</code></p>
+<p><code class="prettyprint">https://cadencetranscription.herokuapp.com/api</code></p>
 
-<h3 id="authentication">Authentication</h3>
+<h2 id="runtime-request-parameters">Runtime Request Parameters</h2>
 
-<p>All requests must use <strong>HTTP basic auth</strong> using a username and password, which we provide on request.</p>
-
-<h3 id="headers">Headers</h3>
-
-<p>All requests are expected to pass the following HTTP Headers:</p>
+<p>The API requires the following parameters on any request:</p>
 
 <table><thead>
 <tr>
-<th>HTTP Header Field</th>
+<th>Parameter</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td><nobr><code class="prettyprint">X-Twilio-VendorAccountSid</code>   </nobr></td>
-<td><em>as in <a href="https://www.twilio.com/docs/api/add-ons/publish">Twilio&rsquo;s documentation</a></em></td>
-</tr>
-<tr>
-<td><nobr><code class="prettyprint">X-Twilio-Signature</code>  </nobr></td>
-<td><em>as in <a href="https://www.twilio.com/docs/api/add-ons/publish">Twilio&rsquo;s documentation</a></em></td>
-</tr>
-<tr>
-<td><nobr><code class="prettyprint">X-Twilio-RequestSid</code>   </nobr></td>
-<td><em>as in <a href="https://www.twilio.com/docs/api/add-ons/publish">Twilio&rsquo;s documentation</a></em></td>
-</tr>
-<tr>
-<td><nobr><code class="prettyprint">X-Twilio-AddOnSid</code>   </nobr></td>
-<td><em>as in <a href="https://www.twilio.com/docs/api/add-ons/publish">Twilio&rsquo;s documentation</a></em></td>
-</tr>
-<tr>
-<td><nobr><code class="prettyprint">X-Twilio-AddOnVersionSid</code>  </nobr></td>
-<td><em>as in <a href="https://www.twilio.com/docs/api/add-ons/publish">Twilio&rsquo;s documentation</a></em></td>
-</tr>
-<tr>
-<td><nobr><code class="prettyprint">X-Twilio-AddOnInstallSid</code>  </nobr></td>
-<td><em>as in <a href="https://www.twilio.com/docs/api/add-ons/publish">Twilio&rsquo;s documentation</a></em></td>
-</tr>
-<tr>
-<td><nobr><code class="prettyprint">X-Twilio-AddOnConfigurationSid</code>  </nobr></td>
-<td><em>as in <a href="https://www.twilio.com/docs/api/add-ons/publish">Twilio&rsquo;s documentation</a></em></td>
-</tr>
-</tbody></table>
-
-<h3 id="http-form-data">HTTP Form data</h3>
-
-<p>HTTP POST data should provide the following fields.</p>
-
-<table><thead>
-<tr>
-<th>www-form-encoded field</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><nobr> <code class="prettyprint">audio_data</code> </nobr></td>
-<td><em>as in <a href="https://www.twilio.com/docs/api/add-ons/publish">Twilio&rsquo;s documentation</a></em></td>
+<td><nobr> <code class="prettyprint">request_sid</code> </nobr></td>
+<td>Unique identifier for this request  <em>(as in <a href="https://www.twilio.com/docs/api/add-ons/publish">Twilio&rsquo;s documentation</a> )</em></td>
 </tr>
 <tr>
 <td><nobr> <code class="prettyprint">callback_url</code> </nobr></td>
-<td><em>as in <a href="https://www.twilio.com/docs/api/add-ons/publish">Twilio&rsquo;s documentation</a></em></td>
+<td>Callback url for the asynchronous response  <em>(as in <a href="https://www.twilio.com/docs/api/add-ons/publish">Twilio&rsquo;s documentation</a> )</em></td>
 </tr>
 <tr>
-<td><nobr> <code class="prettyprint">channels</code> </nobr></td>
-<td><em>as in <a href="https://www.twilio.com/docs/api/add-ons/publish">Twilio&rsquo;s documentation</a></em></td>
-</tr>
-<tr>
-<td><nobr> <code class="prettyprint">duration</code> </nobr></td>
-<td><em>as in <a href="https://www.twilio.com/docs/api/add-ons/publish">Twilio&rsquo;s documentation</a></em></td>
-</tr>
-<tr>
-<td><nobr> <code class="prettyprint">format</code> </nobr></td>
-<td><em>as in <a href="https://www.twilio.com/docs/api/add-ons/publish">Twilio&rsquo;s documentation</a></em></td>
-</tr>
-<tr>
-<td><nobr> <code class="prettyprint">media_sid</code> </nobr></td>
-<td><em>as in <a href="https://www.twilio.com/docs/api/add-ons/publish">Twilio&rsquo;s documentation</a></em></td>
-</tr>
-<tr>
-<td><nobr> <code class="prettyprint">size</code> </nobr></td>
-<td><em>as in <a href="https://www.twilio.com/docs/api/add-ons/publish">Twilio&rsquo;s documentation</a></em></td>
+<td><nobr> <code class="prettyprint">audio_data</code> </nobr></td>
+<td>Audio file binary bytestream <em>(as in <a href="https://www.twilio.com/docs/api/add-ons/publish">Twilio&rsquo;s documentation</a> )</em></td>
 </tr>
 <tr>
 <td><nobr> <code class="prettyprint">requested_service</code> </nobr></td>
-<td>Should be one of the following: [<nobr><code class="prettyprint">transcription</code>,</nobr> <nobr><code class="prettyprint">translation</code>,</nobr> <nobr><code class="prettyprint">transcription_translation</code>]</nobr></td>
+<td>Requested Service. Should be one of the following: [<nobr><code class="prettyprint">transcription</code>,</nobr> <nobr><code class="prettyprint">translation</code>]</nobr></td>
 </tr>
 <tr>
-<td><nobr> <code class="prettyprint">source_language</code> </nobr></td>
-<td>Describes the spoken languages in the audio file provided by the client. Should contain a language code, or a comma separated list of language codes. E.g. <code class="prettyprint">en</code>, <code class="prettyprint">cn</code>, or <code class="prettyprint">en,de,cn</code>.</td>
+<td><nobr> <code class="prettyprint">source_languages</code> </nobr></td>
+<td>Languages in the audio file provided by the client. Should contain a language code, or a comma separated list of language codes. E.g. <code class="prettyprint">en</code>, <code class="prettyprint">cn</code>, or <code class="prettyprint">en,de,cn</code>.</td>
 </tr>
 <tr>
 <td><nobr> <code class="prettyprint">target_language</code> </nobr></td>
-<td><em>(optional)</em> Describes the desired output languages, either for the transcription or the dubbed file. Should contain <strong>a single language code</strong>. A comma separated list of language codes is not accepted. If not provided, the source languages will be used.</td>
+<td><em>(optional)</em> The desired output language, either for the transcription or the dubbed file. Should contain <strong>a single language code</strong>.</td>
 </tr>
 </tbody></table>
 
-<h3 id="immediate-response">Immediate response</h3>
+<h3 id="authentication">Authentication</h3>
 
-<p>The immediate response will be an empty HttpResponse with a 202 (HTTP_ACCEPTED) status code.</p>
+<p>All requests must use <strong>HTTP basic auth</strong> using a username and password we provide.</p>
 
-<blockquote>
-<p>A valid request can be made using this code:</p>
-</blockquote>
+<h2 id="result">Result</h2>
+
+<p>For any successful asynchronous request, we return a <strong>202 Accepted</strong> response with no body. </p>
+
+<h3 id="callback-response">Callback response</h3>
+
+<p>After completion of the demanded service, we POST a request to the <code class="prettyprint">callback_url</code>.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><nobr> <code class="prettyprint">request_sid</code> </nobr></td>
+<td>The unique identifier for this request</td>
+</tr>
+<tr>
+<td><nobr> <code class="prettyprint">status</code> </nobr></td>
+<td>Status message. Either <code class="prettyprint">ok</code>, or <code class="prettyprint">error</code></td>
+</tr>
+<tr>
+<td><nobr> <code class="prettyprint">message</code> </nobr></td>
+<td>An empty string, or a message explaing the related status code.</td>
+</tr>
+<tr>
+<td><nobr> <code class="prettyprint">transcription</code> </nobr></td>
+<td><em>optional</em> If requested, a document containing the transcription.</td>
+</tr>
+<tr>
+<td><nobr> <code class="prettyprint">translation</code> </nobr></td>
+<td><em>optional</em> If requested, an audio file with voice-over translation of the original message.</td>
+</tr>
+</tbody></table>
+
+<h3 id="authentication">Authentication</h3>
+
+<p>Our request uses <strong>HTTP basic auth</strong> with a username and password you provide.</p>
+
+<h2 id="complete-sample-request">Complete Sample Request</h2>
 <pre class="highlight python tab-python"><code>
 <span class="kn">import</span> <span class="nn">requests</span>
 
@@ -560,61 +538,7 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 <span class="k">assert</span> <span class="ow">not</span> <span class="n">r</span><span class="o">.</span><span class="n">content</span>
 
 </code></pre>
-<h2 id="callback-response">Callback Response</h2>
-
-<p>After creation and manual checks the transciptions and translations, we submit a HTTP POST request to the <code class="prettyprint">callback-url</code> that was provided earlier.</p>
-
-<h3 id="authentication">Authentication</h3>
-
-<p>Authentication will be provided by HTTP basic auth using a username and password provided by Twilio.</p>
-
-<h3 id="header-data">Header Data</h3>
-
-<table><thead>
-<tr>
-<th>HTTP Header Field</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><nobr><code class="prettyprint">user-agent</code>   </nobr></td>
-<td>Identifier of our app, e.g. <code class="prettyprint">cadencetranslate/v/0.1</code></td>
-</tr>
-</tbody></table>
-
-<h3 id="form-data">Form Data</h3>
-
-<table><thead>
-<tr>
-<th>www-form-encoded field</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td><nobr> <code class="prettyprint">X-Twilio-RequestSid</code> </nobr></td>
-<td>The related RequestSid</td>
-</tr>
-<tr>
-<td><nobr> <code class="prettyprint">status</code> </nobr></td>
-<td>A status message. Either <code class="prettyprint">ok</code>, or <code class="prettyprint">error</code></td>
-</tr>
-<tr>
-<td><nobr> <code class="prettyprint">message</code> </nobr></td>
-<td>An empty string, or a message explaing the related status code.</td>
-</tr>
-<tr>
-<td><nobr> <code class="prettyprint">transcription</code> </nobr></td>
-<td><em>optional</em> If requested, a document containing the transcription.</td>
-</tr>
-<tr>
-<td><nobr> <code class="prettyprint">translation</code> </nobr></td>
-<td><em>optional</em> If requested, an audio file where the original message is dubbed.</td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>A similar request can created using this code:</p>
-</blockquote>
+<h2 id="complete-sample-response">Complete Sample Response</h2>
 <pre class="highlight python tab-python"><code>
 <span class="kn">import</span> <span class="nn">requests</span>
 
