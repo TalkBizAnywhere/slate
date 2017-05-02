@@ -8,7 +8,7 @@ Cadence Translate provides high-accuracy transcription and voice-over translatio
 
 ## Installation and Configuration
 
-There is no installation needed. The API only accepts requests via HTTP POST to the URL 
+There is no installation needed. The API  accepts requests via HTTP POST to the URL 
 
 `https://cadencetranscription.herokuapp.com/api`
 
