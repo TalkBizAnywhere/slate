@@ -503,7 +503,7 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 <pre class="highlight python tab-python"><code>
 <span class="kn">import</span> <span class="nn">requests</span>
 
-<span class="n">url</span> <span class="o">=</span> <span class="s">"https://twilioapi.herokuapp.com/api"</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://cadencetranscription.herokuapp.com/api"</span>
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'X-Twilio-VendorAccountSid'</span><span class="p">:</span> <span class="s">'AC05b3911315a1322d1dede66eed740000'</span><span class="p">,</span>
            <span class="s">'X-Twilio-Signature'</span><span class="p">:</span> <span class="s">'0FqS203W44/lM2UEM+51hRzwat4='</span><span class="p">,</span>
@@ -514,7 +514,7 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
            <span class="s">'X-Twilio-AddOnConfigurationSid'</span><span class="p">:</span> <span class="s">'XEbee2b4cf26384f0b88ad98a25530c338'</span><span class="p">,</span>
             <span class="p">}</span>
 
-<span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s">'source_languages'</span><span class="p">:</span> <span class="s">'en'</span><span class="p">,</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s">'source_languages'</span><span class="p">:</span> <span class="s">'en,de'</span><span class="p">,</span>
         <span class="s">'target_language'</span><span class="p">:</span> <span class="s">'cn'</span><span class="p">,</span>
         <span class="s">'request_sid'</span><span class="p">:</span> <span class="s">'MR000009775bb6d43d1cabc4955723fae1'</span><span class="p">,</span>
         <span class="s">'requested_service'</span><span class="p">:</span> <span class="s">'transcription'</span><span class="p">,</span>
@@ -536,6 +536,27 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 <span class="k">assert</span> <span class="n">r</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">202</span>
 <span class="k">assert</span> <span class="ow">not</span> <span class="n">r</span><span class="o">.</span><span class="n">content</span>
 
+</code></pre><pre class="highlight shell tab-shell"><code>curl  -X POST <span class="se">\</span>
+ -u cadence:friend <span class="se">\</span>
+ --header <span class="s1">'X-Twilio-VendorAccountSid:AC05b3911315a1322d1dede66eed740000'</span> <span class="se">\</span>
+ --header <span class="s1">'X-Twilio-Signature:0FqS203W44/lM2UEM+51hRzwat4='</span> <span class="se">\</span>
+ --header <span class="s1">'X-Twilio-RequestSid:MR000009775bb6d43d1cabc4955723fae1'</span> <span class="se">\</span>
+ --header <span class="s1">'X-Twilio-AddOnSid:XBc6dc06ce91d566fae284bc2bf36218a4'</span> <span class="se">\</span>
+ --header <span class="s1">'X-Twilio-AddOnVersionSid:XC2ad3d7d6478a2ca72f224d817a241586'</span> <span class="se">\</span>
+ --header <span class="s1">'X-Twilio-AddOnInstallSid:XDe2767c53b3d7be099a825252c6cf4e59'</span> <span class="se">\</span>
+ --header <span class="s1">'X-Twilio-AddOnConfigurationSid:XEbee2b4cf26384f0b88ad98a25530c338'</span> <span class="se">\</span>
+ --form <span class="nv">source_languages</span><span class="o">=</span><span class="s2">"en,de"</span> <span class="se">\</span>
+ --form <span class="nv">target_language</span><span class="o">=</span>cn <span class="se">\</span>
+ --form <span class="nv">request_sid</span><span class="o">=</span>MR000009775bb6d43d1cabc4955723fae1 <span class="se">\</span>
+ --form <span class="nv">requested_service</span><span class="o">=</span>transcription <span class="se">\</span>
+ --form <span class="nv">callback_url</span><span class="o">=</span><span class="s2">"http://httpbin.org/post"</span> <span class="se">\</span>
+ --form <span class="nv">channels</span><span class="o">=</span>2 <span class="se">\</span>
+ --form <span class="nv">duration</span><span class="o">=</span>6000 <span class="se">\</span>
+ --form <span class="nv">format</span><span class="o">=</span><span class="s2">"audio/x-wav"</span> <span class="se">\</span>
+ --form <span class="nv">media_sid</span><span class="o">=</span><span class="s2">"WcS42767c53b3d7be099a825252c6c123e59"</span> <span class="se">\</span>
+ --form <span class="nv">size</span><span class="o">=</span>1204 <span class="se">\</span>
+ --form <span class="s2">"audio_data=@file.wav"</span> <span class="se">\</span>
+ https://cadencetranscription.herokuapp.com/api
 </code></pre>
 <h2 id="complete-sample-response">Complete Sample Response</h2>
 <pre class="highlight python tab-python"><code>
@@ -560,6 +581,15 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
          <span class="s">'translation'</span><span class="p">:</span> <span class="n">audio_file</span><span class="p">}</span>
 
 <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="n">auth</span><span class="p">,</span> <span class="n">files</span><span class="o">=</span><span class="n">files</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+</code></pre><pre class="highlight shell tab-shell"><code>curl  -X POST <span class="se">\</span>
+ -u cadence:friend <span class="se">\</span>
+ --header <span class="s1">'user-agent:cadencetranscription/v/0.1'</span> <span class="se">\</span>
+ --form <span class="nv">status</span><span class="o">=</span>ok <span class="se">\</span>
+ --form <span class="nv">message</span><span class="o">=</span><span class="s2">""</span> <span class="se">\</span>
+ --form <span class="nv">request_sid</span><span class="o">=</span>MR000009775bb6d43d1cabc4955723fae1 <span class="se">\</span>
+ --form <span class="s2">"transcription=@transcription.pdf"</span> <span class="se">\</span>
+ --form <span class="s2">"translation=@file.wav"</span> <span class="se">\</span>
+ http://httpbin.org/post
 </code></pre>
       </div>
       <div class="dark-box">
