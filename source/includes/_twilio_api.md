@@ -35,7 +35,7 @@ Parameter | Description
 All requests must use **HTTP basic auth** using a username and password we provide.
 
 
-## Results Fields
+## Result
 
 For any successful asynchronous request, we return a **202 Accepted** response with no body. 
 
@@ -47,7 +47,7 @@ After completion of the demanded service, we POST a request to the `callback_url
 Parameter | Description
 ------------------------------- | ------
 <nobr> `request_sid` </nobr>  | The unique identifier for this request
-<nobr> `status` </nobr> | A status message. Either `ok`, or `error`
+<nobr> `status` </nobr> | Status message. Either `ok`, or `error`
 <nobr> `message` </nobr> | An empty string, or a message explaing the related status code.
 <nobr> `transcription` </nobr> | *optional* If requested, a document containing the transcription.
 <nobr> `translation` </nobr> | *optional* If requested, an audio file with voice-over translation of the original message.
