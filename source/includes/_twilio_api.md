@@ -1,60 +1,66 @@
 
 # Twilio API
 
+Cadence Translate provides high-accuracy transcription and voice-over translation services for Twilio, and its partners.
 
-The purpose of this API is to allow Cadence Translate to work with Twilio, to provide transcription and dubbing services. Using a combination of manual and or machine supported translation and transcription, we can produce a high-quality result.
 
-## Inital Request
 
-All requests made to this API should be made via HTTP POST to the URL 
 
-`https://twillioapi.herokuapp.com/api`
+## Installation and Configuration
+
+There is no installation needed. The API only accepts requests via HTTP POST on the URL 
+
+`https://cadencetranscription.herokuapp.com/api`
+
+
+
+
+## Runtime Request Parameters
+
+The API requires the following parameters on any request:
+
+Parameter | Description
+------------------------------- | ------
+<nobr> `request_sid` </nobr>  | Unique identifier for this request  *(as in [Twilio's documentation](https://www.twilio.com/docs/api/add-ons/publish) )*
+<nobr> `callback_url` </nobr>  | Callback url for the asynchronous response  *(as in [Twilio's documentation](https://www.twilio.com/docs/api/add-ons/publish) )*
+<nobr> `audio_data` </nobr>  | Audio file binary bytestream *(as in [Twilio's documentation](https://www.twilio.com/docs/api/add-ons/publish) )*
+<nobr> `requested_service` </nobr>  | Requested Service. Should be one of the following: [<nobr>`transcription`,</nobr> <nobr>`translation`]</nobr>
+<nobr> `source_languages` </nobr> | Languages in the audio file provided by the client. Should contain a language code, or a comma separated list of language codes. E.g. `en`, `cn`, or `en,de,cn`.
+<nobr> `target_language` </nobr> | *(optional)* The desired output language, either for the transcription or the dubbed file. Should contain **a single language code**.
+
+
 
 ### Authentication
 
-All requests must use **HTTP basic auth** using a username and password, which we provide on request.
-
-### Headers 
-
-All requests are expected to pass the following HTTP Headers:
+All requests must use **HTTP basic auth** using a username and password we provide.
 
 
-HTTP Header Field | Description
+## Results Fields
+
+For any successful asynchronous request, we return a **202 Accepted** response with no body. 
+
+### Callback response
+
+After completion of the demanded service, we POST a request to the `callback_url`.
+
+
+Parameter | Description
 ------------------------------- | ------
-<nobr>`X-Twilio-VendorAccountSid`   </nobr> | *as in [Twilio's documentation](https://www.twilio.com/docs/api/add-ons/publish)*
-<nobr>`X-Twilio-Signature`  </nobr> | *as in [Twilio's documentation](https://www.twilio.com/docs/api/add-ons/publish)*
-<nobr>`X-Twilio-RequestSid`   </nobr> | *as in [Twilio's documentation](https://www.twilio.com/docs/api/add-ons/publish)*
-<nobr>`X-Twilio-AddOnSid`   </nobr> | *as in [Twilio's documentation](https://www.twilio.com/docs/api/add-ons/publish)*
-<nobr>`X-Twilio-AddOnVersionSid`  </nobr> | *as in [Twilio's documentation](https://www.twilio.com/docs/api/add-ons/publish)*
-<nobr>`X-Twilio-AddOnInstallSid`  </nobr> | *as in [Twilio's documentation](https://www.twilio.com/docs/api/add-ons/publish)*
-<nobr>`X-Twilio-AddOnConfigurationSid`  </nobr> | *as in [Twilio's documentation](https://www.twilio.com/docs/api/add-ons/publish)*
+<nobr> `request_sid` </nobr>  | The unique identifier for this request
+<nobr> `status` </nobr> | A status message. Either `ok`, or `error`
+<nobr> `message` </nobr> | An empty string, or a message explaing the related status code.
+<nobr> `transcription` </nobr> | *optional* If requested, a document containing the transcription.
+<nobr> `translation` </nobr> | *optional* If requested, an audio file with voice-over translation of the original message.
 
 
-### HTTP Form data
 
-HTTP POST data should provide the following fields.
+### Authentication
 
-
-www-form-encoded field | Description
-------------------------------- | ------
-<nobr> `audio_data` </nobr> | *as in [Twilio's documentation](https://www.twilio.com/docs/api/add-ons/publish)*
-<nobr> `callback_url` </nobr>   | *as in [Twilio's documentation](https://www.twilio.com/docs/api/add-ons/publish)*
-<nobr> `channels` </nobr>  | *as in [Twilio's documentation](https://www.twilio.com/docs/api/add-ons/publish)*
-<nobr> `duration` </nobr>   | *as in [Twilio's documentation](https://www.twilio.com/docs/api/add-ons/publish)*
-<nobr> `format` </nobr>   | *as in [Twilio's documentation](https://www.twilio.com/docs/api/add-ons/publish)*
-<nobr> `media_sid` </nobr>  | *as in [Twilio's documentation](https://www.twilio.com/docs/api/add-ons/publish)*
-<nobr> `size` </nobr>  | *as in [Twilio's documentation](https://www.twilio.com/docs/api/add-ons/publish)*
-<nobr> `requested_service` </nobr>  | Should be one of the following: [<nobr>`transcription`,</nobr> <nobr>`translation`,</nobr> <nobr>`transcription_translation`]</nobr>
-<nobr> `source_language` </nobr> | Describes the spoken languages in the audio file provided by the client. Should contain a language code, or a comma separated list of language codes. E.g. `en`, `cn`, or `en,de,cn`.
-<nobr> `target_language` </nobr> | *(optional)* Describes the desired output languages, either for the transcription or the dubbed file. Should contain **a single language code**. A comma separated list of language codes is not accepted. If not provided, the source languages will be used.
+Our request uses **HTTP basic auth** with a username and password you provide.
 
 
-### Immediate response
 
-The immediate response will be an empty HttpResponse with a 202 (HTTP_ACCEPTED) status code.
-
-
-> A valid request can be made using this code:
+## Complete Sample Request 
 
 ```python
 
@@ -97,39 +103,9 @@ assert not r.content
 ```
 
 
-## Callback Response
 
-After creation and manual checks the transciptions and translations, we submit a HTTP POST request to the `callback-url` that was provided earlier.
+## Complete Sample Response
 
-
-### Authentication
-
-Authentication will be provided by HTTP basic auth using a username and password provided by Twilio.
-
-### Header Data
-
-
-HTTP Header Field | Description
-------------------------------- | ------
-<nobr>`user-agent`   </nobr> | Identifier of our app, e.g. `cadencetranslate/v/0.1`
-
-
-
-
-### Form Data
-
-
-www-form-encoded field | Description
-------------------------------- | ------
-<nobr> `X-Twilio-RequestSid` </nobr>  | The related RequestSid
-<nobr> `status` </nobr> | A status message. Either `ok`, or `error`
-<nobr> `message` </nobr> | An empty string, or a message explaing the related status code.
-<nobr> `transcription` </nobr> | *optional* If requested, a document containing the transcription.
-<nobr> `translation` </nobr> | *optional* If requested, an audio file where the original message is dubbed.
-
-
-
-> A similar request can created using this code:
 
 ```python
 
@@ -157,4 +133,5 @@ files = {'transcription': transcription_file,
 
 r = requests.post(url, auth=auth, files=files, data=data, headers=headers)
 ```
+
 
